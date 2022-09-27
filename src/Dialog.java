@@ -1,17 +1,21 @@
 public class Dialog {
     private static String id; // имя/id пользователя
     private static HiddenWord hidden_word; // загаданное слово
-    private static boolean diologState; // переменная, которая показывает диалог активен или нет
-    public Dialog (){
-        diologState = true;
+    private static boolean dialogState; // переменная, которая показывает диалог активен или нет
+    private static Database database;
+
+
+    public Dialog (Database Database){
+        database = Database;
+        dialogState = true;
     }
 
     public static void FinishDiolog(){ // завершает диалог
-        diologState = false;
+        dialogState = false;
     }
 
     public static boolean IsActive(){ // возвращает заначение состояния диалога
-        return diologState;
+        return dialogState;
 
     }
 
@@ -21,5 +25,13 @@ public class Dialog {
 
     public static void AddHiddenWord(String hiddenWord){
         hidden_word = hiddenWord;
+    }
+
+    public static Database ReturnDatabase(){
+        return database;
+    }
+
+    public static HiddenWord ReturnHiddenWord(){
+        return hidden_word;
     }
 }
