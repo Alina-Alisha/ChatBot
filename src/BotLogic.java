@@ -1,6 +1,7 @@
 public class BotLogic {
     public static String Help(){
-        String help = ""; //TODO: написать help
+        String help = "Если ты,прекрасный человек, забыл как со мной общаться, то вот команда эксклюзивно для тебя:\n"+
+                    "1)Введи \"start\" и ты начнёшь, остальное узнаешь там) ";//TODO: написать help
         return help;
     }
     public static String Greеting() {
