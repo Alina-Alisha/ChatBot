@@ -84,7 +84,7 @@ public class BotLogic {
         if (dialog.ReturnHiddenWord().IsWordSolved()){
             String text = "Победа!\n" +
                     "Сыграем еще разок? Введи \"new word\""
-            return text
+            return text;
         }
 
 
