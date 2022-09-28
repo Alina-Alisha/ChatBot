@@ -4,7 +4,7 @@ public class BotLogic {
         return help;
     }
     public static String Greеting() {
-        String greeting = "Привет! Я Kot, двай поиграем в виселицу. Попробуй отгадать мое слово.\n" +
+        String greeting = "Привет! Я Кiт, двай поиграем в виселицу. Попробуй отгадать мое слово.\n" +
                 "Девять ошибок и ты проиграл!\n" +
                 "Буквы \"е\" и \"ё\" считаются за одну.\n" +
                 "буква \"ы\" мне не нравится, слов с ней загадывать не буду.\n" +
@@ -96,7 +96,7 @@ public class BotLogic {
 
             if (dialog.ReturnHiddenWord().IsWordSolved()) {
                 text = "Победа!\n" +
-                        "Сыграем еще разок? Введи \"new word\""
+                        "Сыграем еще разок? Введи \"new word\"";
                 return text;
                 text = "Угадал! Есть такая буква.\n";
                 return text + dialog.ReturnHiddenWord().WordWithHiddenLetters();
