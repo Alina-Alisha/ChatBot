@@ -1,6 +1,6 @@
 public class Dialog {
     private static String id; // имя/id пользователя
-    private static String hidden_word; // загаданное слово
+    private static HiddenWord hidden_word; // загаданное слово
     private static boolean dialogState; // переменная, которая показывает диалог активен или нет
     private static Database database;
 
