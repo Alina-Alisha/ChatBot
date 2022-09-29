@@ -1,6 +1,7 @@
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         Database text = new Database("Database.txt");
 
         System.out.println(BotLogic.Greеting());// ф-я, которая возвращает строку с приветствием

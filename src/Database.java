@@ -3,8 +3,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.*;
 
-
-public class DataBase {
+public class Database {
 
     public static ArrayList<String> wordsArray(String file) throws FileNotFoundException { // создание массива слов
 
@@ -35,7 +34,7 @@ public class DataBase {
         return wordsArray.get(randNumber);
     }
 
-    DataBase(String fileName) throws FileNotFoundException {
+    Database(String fileName) throws FileNotFoundException {
         wordsArray(fileName);
     }
 }
