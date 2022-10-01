@@ -5,26 +5,30 @@ import java.io.*;
 
 public class Database {
 
-    public static ArrayList<String> wordsArray(String file) throws FileNotFoundException { // создание массива слов
-
-        Scanner sc = new Scanner(new File(file)); // присвоение содержимого файла строке
+    public static ArrayList<String> wordsArray(String fileName) {
+        File file = new File(fileName);
         String fileContent = "";
-        while (sc.hasNextLine()) {
-            fileContent = sc.nextLine();
+        try (FileReader fr = new FileReader(file)) {
+            char[] chars = new char[(int) file.length()];
+            fr.read(chars);
+
+            String words = new String(chars);
+            fileContent = words;
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
         ArrayList<String> dataBase = new ArrayList<>();  //создание массива слов с индексом
-        String line = ""; //переменная для набора слова до пробела
-        int k = 0;
-        for (int i = 0; i < fileContent.length(); i++) {
+        String line = "";
+        for (int i = 0; i < fileContent.length()-1; i++) {
             int c = 0;
             while (fileContent.charAt(i + c) != ' ') {
+                line += fileContent.charAt(i + c);
                 c++;
-                line += fileContent.charAt(i);
             }
-            dataBase.add(line); //добавление слова в массив
+            dataBase.add(line);
             line = "";
-            i += c + 1;
+            i += c;
         }
         return dataBase;
     }
@@ -34,7 +38,7 @@ public class Database {
         return wordsArray.get(randNumber);
     }
 
-    Database(String fileName) throws FileNotFoundException {
+    Database(String fileName) {
         wordsArray(fileName);
     }
 }

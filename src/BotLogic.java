@@ -14,14 +14,16 @@ public class BotLogic {
         return greeting;
     }
 
-    public static String GetAnswer(String userMessage, Dialog dialog){
-        if (userMessage.length() == 1){// проверяем, есть ли буква в загаданном слове, возвращает сообщение с ответом да/нет,
-            return ChekLetter(userMessage, dialog);      // если нет то + кол-во права на ошибку
+    public static String GetAnswer(String userMessage, Dialog dialog, String fileName){
+        if (userMessage.length() == 1){// проверяем, есть ли буква в загаданном слове, возвращает сообщение с ответом да/нет, + слово с отгаданными буквами
+            char letter = userMessage.charAt(0);
+            return ChekLetter(letter, dialog);      // если нет то + кол-во права на ошибку
         }
 
         if (userMessage.substring(0, 3) == "ID:"){
             dialog.AddId(userMessage);
-            return NewWord(dialog);
+            return NewWord(dialog, fileName);  //? почему то не обрабатывает и не возвращает а переходит к Help(), После ввода ID выводится хелп
+
         }
         switch(userMessage){
             case("help"):
@@ -29,7 +31,7 @@ public class BotLogic {
             case("start"):
                 return Start(dialog);
             case("new word"):
-                return NewWord(dialog);
+                return NewWord(dialog, fileName);
             case("finish"):
                 return Finish(dialog);
             default:
@@ -37,25 +39,28 @@ public class BotLogic {
         }
 
         return Help();
+        //return NewWord(dialog, fileName);
 
     }
 
     public static String Start(Dialog dialog){
-        String text = "Даввай прежде познакомимся!\n" +
+        String text = "Давай прежде познакомимся!\n" +
                 "Ввведи \"ID:\", а затем без пробелов свое имя.\n";
         return text;
 
     }
-    public static String NewWord(Dialog dialog){
-        HiddenWord hiddenWord = new HiddenWord(dialog.ReturnDatabase().GenerateWord());
-        dialog.AddHiddenWord(hiddenWord.toString());
+    public static String NewWord(Dialog dialog, String fileName){ //изменила чтоб работало с базой данных
+        HiddenWord hiddenWord = new HiddenWord(dialog.ReturnDatabase().GenerateWord(dialog.ReturnDatabase().wordsArray(fileName))); // В Generate передае массива слов
+        //HiddenWord hiddenWord = new HiddenWord("cat");
+        //dialog.AddHiddenWord(hiddenWord.toString());  //? зачем ту стринг? учесть что я изменила стринг в классе диалог на хидден ворд
+        dialog.AddHiddenWord(hiddenWord);
         String text = ""; // TODO: написать сообщение
         return text + hiddenWord.WordWithHiddenLetters();
 
-
     } // меняем поля в загаданном слове
+
     public static String Finish(Dialog dialog){
-        dialog.FinishDialog();
+        dialog.FinishDialog();                  //сменяем флаг на неактивный диалог переключаясь на другой
         String text = "Пока, до новых встреч!";
         return text;
 
@@ -64,13 +69,13 @@ public class BotLogic {
     public static String YouWin(Dialog dialog){
         if (dialog.ReturnHiddenWord().IsWordSolved()){
             String text = "Победа!\n" +
-                    "Сыграем еще разок? Введи \"new word\""
+                    "Сыграем еще разок? Введи \"new word\"";
             return text;
         }
-        return ;
+        return "";
     }
 
-    public static String ChekLetter(String userMessage, Dialog dialog){
+    public static String ChekLetter(char userMessage, Dialog dialog){
         String text;  // TODO: написать сообщение, не забыть про количество "права на ошибку"
         if (dialog.ReturnHiddenWord().CheckLetter(userMessage)) {
 
@@ -78,16 +83,13 @@ public class BotLogic {
                 text = "Победа!\n" +
                         "Сыграем еще разок? Введи \"new word\"";
                 return text;
+            }
                 text = "Угадал! Есть такая буква.\n";
                 return text + dialog.ReturnHiddenWord().WordWithHiddenLetters();
-            } else {
-                text = "Промах. Здесь нет буквы \\”" + userMessage + "\\”."; // TODO: написать сообщение,
+        } else {
+            text = "Промах. Здесь нет буквы \\”" + userMessage + "\\”."; // TODO: написать сообщение,
                                                                             // не забыть про количество "права на ошибку"
-                return text + dialog.ReturnHiddenWord().WordWithHiddenLetters();
-            }
+            return text + dialog.ReturnHiddenWord().WordWithHiddenLetters();
         }
-        return ;
-
     }
-
 }
