@@ -1,8 +1,11 @@
-public class BotLogic {
+public class BotLogic { //переименовать методы с маленькой буквы
+
+    //TODO:сделать поле базы данных
+
     public static String Help(){
-        String help = "Если ты,прекрасный человек, забыл как со мной общаться, то вот команда эксклюзивно для тебя:\n"+
+        return "Если ты,прекрасный человек, забыл как со мной общаться, то вот команда эксклюзивно для тебя:\n"+
                     "1)Введи \"start\" и ты начнёшь, остальное узнаешь там) ";
-        return help;
+
     }
     public static String Greеting() {
         String greeting = "Привет! Я Кiт, двай поиграем в виселицу. Попробуй отгадать мое слово.\n" +
@@ -15,16 +18,17 @@ public class BotLogic {
     }
 
     public static String GetAnswer(String userMessage, Dialog dialog, String fileName){
+
         if (userMessage.length() == 1){// проверяем, есть ли буква в загаданном слове, возвращает сообщение с ответом да/нет, + слово с отгаданными буквами
             char letter = userMessage.charAt(0);
             return ChekLetter(letter, dialog);      // если нет то + кол-во права на ошибку
         }
 
-        if (userMessage.substring(0, 3) == "ID:"){
+        if (userMessage.substring(0,3).equals("ID:") ){
             dialog.AddId(userMessage);
             return NewWord(dialog, fileName);  //? почему то не обрабатывает и не возвращает а переходит к Help(), После ввода ID выводится хелп
-
         }
+
         switch(userMessage){
             case("help"):
                 return Help();
@@ -39,13 +43,12 @@ public class BotLogic {
         }
 
         return Help();
-        //return NewWord(dialog, fileName);
 
     }
 
     public static String Start(Dialog dialog){
         String text = "Давай прежде познакомимся!\n" +
-                "Ввведи \"ID:\", а затем без пробелов свое имя.\n";
+                "Ввведи \"ID:\", а затем без пробелов свое имя.";
         return text;
 
     }
@@ -74,6 +77,8 @@ public class BotLogic {
         }
         return "";
     }
+
+    //TODO: обработать проигрыш
 
     public static String ChekLetter(char userMessage, Dialog dialog){
         String text;  // TODO: написать сообщение, не забыть про количество "права на ошибку"

@@ -26,6 +26,7 @@ public class Database {
                 line += fileContent.charAt(i + c);
                 c++;
             }
+            line += fileContent.charAt(i + c + 1);
             dataBase.add(line);
             line = "";
             i += c;
