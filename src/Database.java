@@ -1,6 +1,5 @@
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.io.*;
 
 public class Database {
@@ -12,29 +11,28 @@ public class Database {
             char[] chars = new char[(int) file.length()];
             fr.read(chars);
 
-            String words = new String(chars);
-            fileContent = words;
+            fileContent = new String(chars);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         ArrayList<String> dataBase = new ArrayList<>();  //создание массива слов с индексом
-        String line = "";
+        StringBuilder line = new StringBuilder();
         for (int i = 0; i < fileContent.length()-1; i++) {
             int c = 0;
             while (fileContent.charAt(i + c) != ' ') {
-                line += fileContent.charAt(i + c);
+                line.append(fileContent.charAt(i + c));
                 c++;
             }
-            line += fileContent.charAt(i + c + 1);
-            dataBase.add(line);
-            line = "";
+            line.append(fileContent.charAt(i + c + 1));
+            dataBase.add(line.toString());
+            line = new StringBuilder();
             i += c;
         }
         return dataBase;
     }
 
-    public static String GenerateWord(ArrayList<String> wordsArray) { // ф-я генерирует рандомное слово, которое будет загадывать бот, передаем массив слов
+    public static String generateWord(ArrayList<String> wordsArray) { // ф-я генерирует рандомное слово, которое будет загадывать бот, передаем массив слов
         int randNumber = (int) ( Math.random() * wordsArray.size() );
         return wordsArray.get(randNumber);
     }
