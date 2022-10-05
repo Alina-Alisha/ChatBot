@@ -1,12 +1,9 @@
 public class User {
     private String id; // имя/id пользователя
     private HiddenWord hidden_word;
-    private boolean dialogState; // переменная, которая показывает диалог активен или нет
-    private final Database database;
+    public boolean dialogState; // переменная, которая показывает диалог активен или нет
 
-
-    public User(Database Database){
-        database = Database;
+    public User(){
         dialogState = true;
     }
 
@@ -16,7 +13,6 @@ public class User {
 
     public boolean isActive(){ // возвращает заначение состояния диалога
         return dialogState;
-
     }
 
     public void addId(String Id){
@@ -26,10 +22,6 @@ public class User {
    public void addHiddenWord(HiddenWord hiddenWord){
        hidden_word = hiddenWord;
        }
-
-    public Database ReturnDatabase(){  //TODO:зачем в классе диалог своя база данных ведь она общая для всех диалогов?
-        return database;
-    }
 
    public HiddenWord returnHiddenWord(){
        return hidden_word;

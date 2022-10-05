@@ -1,6 +1,5 @@
 public class BotLogic {
 
-    //TODO:сделать поле базы данных
     public String fileName = "Words.txt";
     public Database database = new Database(fileName);
 
@@ -19,27 +18,27 @@ public class BotLogic {
                 Чтобы начать игру введи "start"!""";
     }
 
-    public String getAnswer(String userMessage, User dialog, String fileName){
+    public String getAnswer(String userMessage, User user){
 
         if (userMessage.length() == 1){// проверяем, есть ли буква в загаданном слове, возвращает сообщение с ответом да/нет, + слово с отгаданными буквами
             char letter = userMessage.charAt(0);
-            return getAnswerOnLetter(letter, dialog);      // если нет то + кол-во права на ошибку
+            return getAnswerOnLetter(letter, user);      // если нет то + кол-во права на ошибку
         }
 
-        if (userMessage.substring(0,3).equals("ID:") ){
-            dialog.addId(userMessage);
-            return newWord(dialog, fileName);
+        if (userMessage.startsWith("ID:") ){ //TODO: исправить ID
+            user.addId(userMessage);
+            return newWord(user);
         }
 
         switch(userMessage){
             case("help"):
                 return help();
             case("start"):
-                return start(dialog);
+                return start(user);
             case("new word"):
-                return newWord(dialog, fileName);
+                return newWord(user);
             case("finish"):
-                return finish(dialog);
+                return finish(user);
             default:
                 break;
         }
@@ -53,8 +52,8 @@ public class BotLogic {
                 "Ввведи \"ID:\", а затем без пробелов свое имя.";
     }
 
-    public String newWord(User dialog, String fileName){
-        HiddenWord hiddenWord = new HiddenWord(dialog.ReturnDatabase().generateWord(dialog.ReturnDatabase().wordsArray(fileName))); // В Generate передае массива слов
+    public String newWord(User dialog){
+        HiddenWord hiddenWord = new HiddenWord(database.generateWord(database.wordsArray(fileName)));
         dialog.addHiddenWord(hiddenWord);
         String text = ""; // TODO: написать сообщение
         return text + hiddenWord.wordWithHiddenLetters();
@@ -68,7 +67,7 @@ public class BotLogic {
 
     }
 
-    public String youWin(User user){
+    public String youWin(User user){ //не нужно
         if (user.returnHiddenWord().isWordSolved()){
             return "Победа!\n" +
                     "Сыграем еще разок? Введи \"new word\"";
@@ -76,10 +75,20 @@ public class BotLogic {
         return "";
     }
 
+    public String youLoss(User user){
+        if (user.returnHiddenWord().mistake == 9){
+            user.dialogState = false;
+            return "К сожалению, ты проиграл. Сыграем еще раз?";
+        }
+        return "";
+    }
+
+
     //TODO: обработать проигрыш
 
-    public String getAnswerOnLetter(char userMessage, User user){
-        String text;  // TODO: написать сообщение, не забыть про количество "права на ошибку"
+    public String getAnswerOnLetter(char userMessage, User user){ //TODO:следует все сообщения тоже выделить в методы и уже возвращать методы
+        String text;
+        int attempts = 8 - user.returnHiddenWord().mistake;
         if (user.returnHiddenWord().isLetterFit(userMessage)) {
             if (user.returnHiddenWord().isWordSolved()) {
                 return  user.returnHiddenWord().word +"\n"+
@@ -87,9 +96,13 @@ public class BotLogic {
                         "Сыграем еще разок? Введи \"new word\"";
             }
                 text = "Угадал! Есть такая буква.\n";
-        } else {
-            text = "Промах. Здесь нет буквы \\”" + userMessage + "\\”.\n"; // TODO: написать сообщение,
-                                                                            // не забыть про количество "права на ошибку"
+
+        } else  if (user.returnHiddenWord().mistake == 9){
+            user.dialogState = false;
+            return "К сожалению, ты проиграл. Сыграем еще раз?";
+        }else {
+            text = "Промах. Здесь нет буквы ”" + userMessage + "”.\n" +
+                    "У тебя есть еще " + attempts + " попыток.\n";
         }
         return text + user.returnHiddenWord().wordWithHiddenLetters();
     }
