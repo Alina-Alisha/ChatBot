@@ -27,9 +27,10 @@ public class HiddenWord {
                 flag = true;
             }
         }
-        if (!flag){ //обработка ошибок
+
+        if (!flag)//обработка ошибок
             mistake++;
-        }
+
         return flag;
     }
 

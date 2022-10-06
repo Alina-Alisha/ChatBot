@@ -1,9 +1,13 @@
 public class User {
+
+    //TODO:ссылка на историю диалогов
+
     private String id; // имя/id пользователя
     private HiddenWord hidden_word;
     public boolean dialogState; // переменная, которая показывает диалог активен или нет
 
-    public User(){
+    public User(String id){
+        this.id = id;
         dialogState = true;
     }
 

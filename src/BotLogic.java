@@ -1,5 +1,9 @@
 public class BotLogic {
 
+    //TODO: проверка id пользователя в массиве id
+
+    //TODO: обработать двойное введение одной и той же буквы
+
     public String fileName = "Words.txt";
     public Database database = new Database(fileName);
 
@@ -83,8 +87,6 @@ public class BotLogic {
         return "";
     }
 
-
-    //TODO: обработать проигрыш
 
     public String getAnswerOnLetter(char userMessage, User user){ //TODO:следует все сообщения тоже выделить в методы и уже возвращать методы
         String text;
