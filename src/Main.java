@@ -14,7 +14,7 @@ public class Main {
             String botMessage = botLogic.getAnswer(userMessage, Id); // генерим сообщение бота
             System.out.println(botMessage); // выводим сообщение в консоль
         }
-        while (botLogic.thereAreActiveUsers());
+        while (botLogic.thereAreActiveUsers()); // проверяем, есть ди активные диалоги
 
     }
 

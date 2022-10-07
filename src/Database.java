@@ -4,8 +4,6 @@ import java.io.*;
 
 public class Database {
 
-    //TODO: сделать массив юзеров
-
     public static ArrayList<String> wordsArray(String fileName) {
         File file = new File(fileName);
         String fileContent = "";

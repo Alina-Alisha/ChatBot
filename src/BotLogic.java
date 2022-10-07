@@ -25,7 +25,7 @@ public class BotLogic {
                 Чтобы начать игру введи "start"!""";
     }
 
-    public String getAnswer(String userMessage, String Id){
+    public String getAnswer(String userMessage, String Id){ // ф-я возвращает ответ бота на сообщение пользователя
         User user = getUser(Id);
         if (userMessage.length() == 1){// проверяем, есть ли буква в загаданном слове, возвращает сообщение с ответом да/нет, + слово с отгаданными буквами
             char letter = userMessage.charAt(0);
@@ -55,7 +55,7 @@ public class BotLogic {
         return text + hiddenWord.wordWithHiddenLetters();
     }
 
-    public String newWord(User dialog){
+    public String newWord(User dialog){ // ф-я возвращает новое загаданное слово
         HiddenWord hiddenWord = new HiddenWord(database.generateWord(database.wordsArray(fileName)));
         dialog.addHiddenWord(hiddenWord);
         String text = "Вот, держи новое слово\n"; // TODO: написать сообщение
@@ -99,7 +99,7 @@ public class BotLogic {
         return user;
     }
 
-    public boolean thereAreActiveUsers(){
+    public boolean thereAreActiveUsers(){ //ф-я проверяет, есть ли активные диалоги в массиве ArrayUsers
         boolean flag = false;
         for (int i = 0; i < ArrayUsers.size(); i++ ){
             if (ArrayUsers.get(i).isActive()){
