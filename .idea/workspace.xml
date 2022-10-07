@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e0cb293-4c10-46b2-b058-961e9c980051" name="Changes" comment="Added Finish&#10;Fixed variable names">
+    <list default="true" id="3e0cb293-4c10-46b2-b058-961e9c980051" name="Changes" comment="Создание новых user'ов перенесено в BotLogic&#10;Убран ввод ID с консоли">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BotLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BotLogic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HiddenWord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HiddenWord.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -89,7 +89,7 @@
       <workItem from="1665066724649" duration="1544000" />
       <workItem from="1665068822275" duration="2945000" />
       <workItem from="1665073469140" duration="1835000" />
-      <workItem from="1665138465445" duration="6550000" />
+      <workItem from="1665138465445" duration="10327000" />
     </task>
     <task id="LOCAL-00001" summary="Added Finish&#10;Fixed variable names">
       <created>1664460735349</created>
@@ -98,7 +98,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664460735349</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Создание новых user'ов перенесено в BotLogic&#10;Убран ввод ID с консоли">
+      <created>1665146495415</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1665146495415</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -144,6 +151,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added Finish&#10;Fixed variable names" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Finish&#10;Fixed variable names" />
+    <MESSAGE value="Создание новых user'ов перенесено в BotLogic&#10;Убран ввод ID с консоли" />
+    <option name="LAST_COMMIT_MESSAGE" value="Создание новых user'ов перенесено в BotLogic&#10;Убран ввод ID с консоли" />
   </component>
 </project>

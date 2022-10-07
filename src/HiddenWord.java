@@ -4,16 +4,12 @@ public class HiddenWord {
     public String word; // хранит само загаданное слово в виде строки
     public int lengthOfHiddenWord; // хранит длину загаданного слова
     public int mistake;// хранит кол-во ошибок (количество названных букв, несодержащтихся в загаданном слове)
-    //public int attemts; // хранит количество попыток (прав на ошибку)
-    private int hiddenLettersNumber; // хранит кол-во неразгаданных букв
     private ArrayList<Boolean> hiddenLetters = new ArrayList<>(); // массив в котором на i месте стоит 1, если буква разгадана, 0 если нет
 
     public HiddenWord(String hiddenWord) {
-        //attemts = lengthOfHiddenWord;
         word = hiddenWord;
         lengthOfHiddenWord = hiddenWord.length();
         mistake = 0;
-        hiddenLettersNumber = hiddenWord.length();
         for (int i = 0; i < hiddenWord.length() - 1; i++) {
             hiddenLetters.add(false);
         }

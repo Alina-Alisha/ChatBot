@@ -6,8 +6,8 @@ public class BotLogic {
 
     //TODO: обработать двойное введение одной и той же буквы
 
-    public String fileName = "Words.txt";
-    public Database database = new Database(fileName);
+    private String fileName = "Words.txt";
+    private Database database = new Database(fileName);
     private ArrayList<User> ArrayUsers = new ArrayList<>();
 
     public String help(){
@@ -77,9 +77,9 @@ public class BotLogic {
         return "";
     }
 
-    public String youLoss(User user){
+    public String youLuss(User user){
         if (user.returnHiddenWord().mistake == 9){
-            user.dialogState = false;
+            user.finishDialog();
             return "К сожалению, ты проиграл. Сыграем еще раз?";
         }
         return "";
@@ -98,8 +98,8 @@ public class BotLogic {
                 text = "Угадал! Есть такая буква.\n";
 
         } else  if (user.returnHiddenWord().mistake == 9){
-            user.dialogState = false;
-            return "К сожалению, ты проиграл. Сыграем еще раз?";
+            user.finishDialog();
+            return "К сожалению, ты проиграл. Сыграем еще раз?Введи \"new word\"";
         }else {
             text = "Промах. Здесь нет буквы ”" + userMessage + "”.\n" +
                     "У тебя есть еще " + attempts + " попыток.\n";

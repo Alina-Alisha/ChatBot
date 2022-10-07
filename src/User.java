@@ -4,7 +4,8 @@ public class User {
 
     private String Id; // имя/id пользователя
     private HiddenWord hidden_word;
-    public boolean dialogState; // переменная, которая показывает диалог активен или нет
+    private boolean dialogState; // переменная, которая показывает диалог активен или нет
+
 
     public User(String id){
         this.Id = id;
@@ -19,11 +20,6 @@ public class User {
         return dialogState;
     }
 
-    /*public void addId(String Id){
-        id = Id;
-    }
-
-     */
 
    public void addHiddenWord(HiddenWord hiddenWord){
        hidden_word = hiddenWord;
