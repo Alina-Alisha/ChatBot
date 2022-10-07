@@ -4,17 +4,19 @@ public class Main {
 
 
         BotLogic botLogic = new BotLogic();
-        User user = new User();
+        String Id = "1";
 
         System.out.println(botLogic.greeting());// ф-я, которая возвращает строку с приветствием
         Scanner console = new Scanner(System.in);
 
-        while (user.isActive()) {
+        do {
             String userMessage = console.nextLine(); // читаем с консоли сообщение пользователя
-            String botMessage = botLogic.getAnswer(userMessage, user); // генерим сообщение бота
+            String botMessage = botLogic.getAnswer(userMessage, Id); // генерим сообщение бота
             System.out.println(botMessage); // выводим сообщение в консоль
         }
+        while (botLogic.thereAreActiveUsers());
 
     }
+
 }
 

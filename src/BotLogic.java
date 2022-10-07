@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class BotLogic {
 
     //TODO: проверка id пользователя в массиве id
@@ -6,6 +8,7 @@ public class BotLogic {
 
     public String fileName = "Words.txt";
     public Database database = new Database(fileName);
+    private ArrayList<User> ArrayUsers = new ArrayList<>();
 
     public String help(){
         return "Если ты,прекрасный человек, забыл как со мной общаться, то вот команда эксклюзивно для тебя:\n"+
@@ -22,16 +25,11 @@ public class BotLogic {
                 Чтобы начать игру введи "start"!""";
     }
 
-    public String getAnswer(String userMessage, User user){
-
+    public String getAnswer(String userMessage, String Id){
+        User user = getUser(Id);
         if (userMessage.length() == 1){// проверяем, есть ли буква в загаданном слове, возвращает сообщение с ответом да/нет, + слово с отгаданными буквами
             char letter = userMessage.charAt(0);
             return getAnswerOnLetter(letter, user);      // если нет то + кол-во права на ошибку
-        }
-
-        if (userMessage.startsWith("ID:") ){ //TODO: исправить ID
-            user.addId(userMessage);
-            return newWord(user);
         }
 
         switch(userMessage){
@@ -107,5 +105,24 @@ public class BotLogic {
                     "У тебя есть еще " + attempts + " попыток.\n";
         }
         return text + user.returnHiddenWord().wordWithHiddenLetters();
+    }
+    public User getUser(String Id){ //ф-я проверяет по id вел ли бот диалог с этим пользователем.
+                                    // Если вел, возвращаем этого user, если нет - создаем новый user c данным id.
+        for (int i = 0; i < ArrayUsers.size(); i++ ){
+            if (ArrayUsers.get(i).returnId() == Id){
+                return ArrayUsers.get(i);
+            }
+        }
+        return new User(Id);
+    }
+
+    public boolean thereAreActiveUsers(){
+        boolean flag = false;
+        for (int i = 0; i < ArrayUsers.size(); i++ ){
+            if (ArrayUsers.get(i).isActive()){
+                flag = true;
+            }
+        }
+        return flag;
     }
 }
