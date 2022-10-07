@@ -1,9 +1,6 @@
 import java.util.ArrayList;
 
 public class BotLogic {
-
-    //TODO: проверка id пользователя в массиве id
-
     //TODO: обработать двойное введение одной и той же буквы
 
     private String fileName = "Words.txt";
@@ -35,8 +32,9 @@ public class BotLogic {
         switch(userMessage){
             case("help"):
                 return help();
-            case("start"):
-                return start(user);
+           case("start"):
+               return start(user);
+               //return start(user);
             case("new word"):
                 return newWord(user);
             case("finish"):
@@ -48,27 +46,33 @@ public class BotLogic {
         return help();
 
     }
-
+/*
     public String start(User user){
         return "Давай прежде познакомимся!\n" +
                 "Ввведи \"ID:\", а затем без пробелов свое имя.";
     }
 
+ */
+    public String start(User dialog){
+        HiddenWord hiddenWord = new HiddenWord(database.generateWord(database.wordsArray(fileName)));
+        dialog.addHiddenWord(hiddenWord);
+        String text = "Отлично! Попробуй отгадать моё слово!\n";
+        return text + hiddenWord.wordWithHiddenLetters();
+    }
+
     public String newWord(User dialog){
         HiddenWord hiddenWord = new HiddenWord(database.generateWord(database.wordsArray(fileName)));
         dialog.addHiddenWord(hiddenWord);
-        String text = ""; // TODO: написать сообщение
+        String text = "Вот, держи новое слово\n"; // TODO: написать сообщение
         return text + hiddenWord.wordWithHiddenLetters();
 
     } // меняем поля в загаданном слове
 
     public String finish(User user){
         user.finishDialog();                  //сменяем флаг на неактивный диалог переключаясь на другой
-        return "Пока, до новых встреч!";
-
-
+        return "Пока, до новых встреч! Если захочешь снова поиграть, просто нипиши \"start\"!";
     }
-
+/*
     public String youWin(User user){ //не нужно
         if (user.returnHiddenWord().isWordSolved()){
             return "Победа!\n" +
@@ -77,7 +81,7 @@ public class BotLogic {
         return "";
     }
 
-    public String youLuss(User user){
+    public String youLuse(User user){
         if (user.returnHiddenWord().mistake == 9){
             user.finishDialog();
             return "К сожалению, ты проиграл. Сыграем еще раз?";
@@ -85,6 +89,7 @@ public class BotLogic {
         return "";
     }
 
+ */
 
     public String getAnswerOnLetter(char userMessage, User user){ //TODO:следует все сообщения тоже выделить в методы и уже возвращать методы
         String text;
@@ -98,7 +103,7 @@ public class BotLogic {
                 text = "Угадал! Есть такая буква.\n";
 
         } else  if (user.returnHiddenWord().mistake == 9){
-            user.finishDialog();
+            //user.finishDialog();
             return "К сожалению, ты проиграл. Сыграем еще раз?Введи \"new word\"";
         }else {
             text = "Промах. Здесь нет буквы ”" + userMessage + "”.\n" +
@@ -113,7 +118,9 @@ public class BotLogic {
                 return ArrayUsers.get(i);
             }
         }
-        return new User(Id);
+        User user = new User(Id);
+        ArrayUsers.add(user);
+        return user;
     }
 
     public boolean thereAreActiveUsers(){
