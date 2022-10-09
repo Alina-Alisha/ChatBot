@@ -1,0 +1,88 @@
+Index: src/BotLogic.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>public class BotLogic {\r\n    public static String Help(){\r\n        String help = \"Если ты,прекрасный человек, забыл как со мной общаться, то вот команда эксклюзивно для тебя:\\n\"+\r\n                    \"1)Введи \\\"start\\\" и ты начнёшь, остальное узнаешь там) \";\r\n        return help;\r\n    }\r\n    public static String Greеting() {\r\n        String greeting = \"Привет! Я Кiт, двай поиграем в виселицу. Попробуй отгадать мое слово.\\n\" +\r\n                \"Девять ошибок и ты проиграл!\\n\" +\r\n                \"Буквы \\\"е\\\" и \\\"ё\\\" считаются за одну.\\n\" +\r\n                \"буква \\\"ы\\\" мне не нравится, слов с ней загадывать не буду.\\n\" +\r\n                \"Если захочешть посмотреть, какие команды я понимаю, напиши \\\"help\\\".\\n\" +\r\n                \"Чтобы начать игру введи \\\"start\\\"!\";\r\n        return greeting;\r\n    }\r\n\r\n    public static String GetAnswer(String userMessage, Dialog dialog){\r\n        if (userMessage.length() == 1){// проверяем, есть ли буква в загаданном слове, возвращает сообщение с ответом да/нет,\r\n            return ChekLetter(userMessage, dialog);      // если нет то + кол-во права на ошибку\r\n        }\r\n\r\n        if (userMessage.substring(0, 3) == \"ID:\"){\r\n            dialog.AddId(userMessage);\r\n            return NewWord(dialog);\r\n        }\r\n        switch(userMessage){\r\n            case(\"help\"):\r\n                return Help();\r\n            case(\"start\"):\r\n                return Start(dialog);\r\n            case(\"new word\"):\r\n                return NewWord(dialog);\r\n            case(\"finish\"):\r\n                return Finish(dialog);\r\n            default:\r\n                break;\r\n        }\r\n\r\n        return Help();\r\n\r\n    }\r\n\r\n    public static String Start(Dialog dialog){\r\n        String text = \"Даввай прежде познакомимся!\\n\" +\r\n                \"Ввведи \\\"ID:\\\", а затем без пробелов свое имя.\\n\";\r\n        return text;\r\n\r\n    }\r\n    public static String NewWord(Dialog dialog){\r\n        HiddenWord hiddenWord = new HiddenWord(dialog.ReturnDatabase().GenerateWord());\r\n        dialog.AddHiddenWord(hiddenWord.toString());\r\n        String text = \"\"; // TODO: написать сообщение\r\n        return text + hiddenWord.WordWithHiddenLetters();\r\n\r\n\r\n    } // меняем поля в загаданном слове\r\n    public static String Finish(Dialog dialog){\r\n        dialog.FinishDialog();\r\n        String text = \"Пока, до новых встреч!\";\r\n        return text;\r\n\r\n    }\r\n\r\n    public static String YouWin(Dialog dialog){\r\n        if (dialog.ReturnHiddenWord().IsWordSolved()){\r\n            String text = \"Победа!\\n\" +\r\n                    \"Сыграем еще разок? Введи \\\"new word\\\"\"\r\n            return text;\r\n        }\r\n        return ;\r\n    }\r\n\r\n    public static String ChekLetter(String userMessage, Dialog dialog){\r\n        String text;  // TODO: написать сообщение, не забыть про количество \"права на ошибку\"\r\n        if (dialog.ReturnHiddenWord().CheckLetter(userMessage)) {\r\n\r\n            if (dialog.ReturnHiddenWord().IsWordSolved()) {\r\n                text = \"Победа!\\n\" +\r\n                        \"Сыграем еще разок? Введи \\\"new word\\\"\";\r\n                return text;\r\n                text = \"Угадал! Есть такая буква.\\n\";\r\n                return text + dialog.ReturnHiddenWord().WordWithHiddenLetters();\r\n            } else {\r\n                text = \"Промах. Здесь нет буквы \\\\”\" + userMessage + \"\\\\”.\"; // TODO: написать сообщение,\r\n                                                                            // не забыть про количество \"права на ошибку\"\r\n                return text + dialog.ReturnHiddenWord().WordWithHiddenLetters();\r\n            }\r\n        }\r\n        return ;\r\n\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/BotLogic.java b/src/BotLogic.java
+--- a/src/BotLogic.java	(revision 260ff27413a8af774c31fa397628333bee3ba2ab)
++++ b/src/BotLogic.java	(date 1664462589727)
+@@ -72,7 +72,7 @@
+ 
+     public static String ChekLetter(String userMessage, Dialog dialog){
+         String text;  // TODO: написать сообщение, не забыть про количество "права на ошибку"
+-        if (dialog.ReturnHiddenWord().CheckLetter(userMessage)) {
++        if (dialog.ReturnHiddenWord().IsLetterInWord(userMessage)) {
+ 
+             if (dialog.ReturnHiddenWord().IsWordSolved()) {
+                 text = "Победа!\n" +
+Index: src/HiddenWord.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import java.util.ArrayList;\r\npublic class HiddenWord {\r\n    private static String word; // хранит само загаданное слово в виде строки\r\n    private static int length; // хранит длину загаданного слова\r\n    private int mistake;// хранит кол-во ошибок (количество названных букв,\r\n                        // несодержащтихся в загаданном слове)\r\n    private int hiddenLetter; // хранит кол-во неразгаданных букв\r\n    private static boolean[] hiddenLetters = new boolean[length]; // массив в котором на i месте стоит 1,\r\n                                                                    // если буква разгадана, 0 если нет\r\n\r\n    public HiddenWord(String w){ // конструктор\r\n        word = w;\r\n        length = w.length();\r\n        mistake = 0;\r\n        hiddenLetter = w.length();\r\n        for (int i=0; i < w.length(); i++) {\r\n            hiddenLetters[i] = false;\r\n        }\r\n    }\r\n\r\n    public static boolean CheckLetter(String checkLetter){ // проверка, содержится ли буква в слове\r\n        boolean flag = false;\r\n        for (int i = 0; i < length; i++){\r\n            if (word[i] == checkLetter){\r\n                hiddenLetters[i] = true;\r\n                flag = true;\r\n            }\r\n        }\r\n        return flag;\r\n    }\r\n\r\n    public static boolean IsWordSolved(){ // проверяет, разгадано ли слово\r\n        boolean flag = true;\r\n        for (int i =0; i < length; i++){\r\n            if (!hiddenLetters[i]){\r\n                flag = false;\r\n            }\r\n        }\r\n        if (flag){return true;}\r\n        else {return false;}\r\n    }\r\n\r\n    public static String WordWithHiddenLetters(){\r\n        String word_with_hidden_letters = \"\";\r\n        for (int i = 0; i < length; i++){\r\n            if (hiddenLetters[i]){\r\n                word_with_hidden_letters += word[i];\r\n            }\r\n            else {\r\n                word_with_hidden_letters += \"_\";\r\n            }\r\n        }\r\n        return word_with_hidden_letters;\r\n    }\r\n\r\n\r\n\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/HiddenWord.java b/src/HiddenWord.java
+--- a/src/HiddenWord.java	(revision 260ff27413a8af774c31fa397628333bee3ba2ab)
++++ b/src/HiddenWord.java	(date 1664462589691)
+@@ -18,7 +18,7 @@
+         }
+     }
+ 
+-    public static boolean CheckLetter(String checkLetter){ // проверка, содержится ли буква в слове
++    public static boolean IsLetterInWord(String checkLetter){ // проверка, содержится ли буква в слове
+         boolean flag = false;
+         for (int i = 0; i < length; i++){
+             if (word[i] == checkLetter){
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"3e0cb293-4c10-46b2-b058-961e9c980051\" name=\"Changes\" comment=\"\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/BotLogic.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/BotLogic.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Database.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Database.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Dialog.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Dialog.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/HiddenWord.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/HiddenWord.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Main.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Main.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProblemsViewState\">\r\n    <option name=\"selectedTabId\" value=\"ProjectErrors\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2FBPyYRjVuKpDlUqkWCUycXMRf4\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;C:/Users/HP/OneDrive - УрФУ/Документы/GitHub/ChatBot&quot;,\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;\r\n  }\r\n}</component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"3e0cb293-4c10-46b2-b058-961e9c980051\" name=\"Changes\" comment=\"\" />\r\n      <created>1663962761680</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1663962761680</updated>\r\n      <workItem from=\"1663962763297\" duration=\"9084000\" />\r\n      <workItem from=\"1664018878976\" duration=\"11497000\" />\r\n      <workItem from=\"1664096270467\" duration=\"14075000\" />\r\n      <workItem from=\"1664263403102\" duration=\"558000\" />\r\n      <workItem from=\"1664265319362\" duration=\"2129000\" />\r\n      <workItem from=\"1664273699603\" duration=\"5219000\" />\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 260ff27413a8af774c31fa397628333bee3ba2ab)
++++ b/.idea/workspace.xml	(date 1664463032986)
+@@ -4,13 +4,10 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="3e0cb293-4c10-46b2-b058-961e9c980051" name="Changes" comment="">
++    <list default="true" id="3e0cb293-4c10-46b2-b058-961e9c980051" name="Changes" comment="Added Finish&#10;Fixed variable names">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/BotLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BotLogic.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Dialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dialog.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/HiddenWord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HiddenWord.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -66,6 +63,14 @@
+       <workItem from="1664265319362" duration="2129000" />
+       <workItem from="1664273699603" duration="5219000" />
+     </task>
++    <task id="LOCAL-00001" summary="Added Finish&#10;Fixed variable names">
++      <created>1664460735349</created>
++      <option name="number" value="00001" />
++      <option name="presentableId" value="LOCAL-00001" />
++      <option name="project" value="LOCAL" />
++      <updated>1664460735349</updated>
++    </task>
++    <option name="localTasksCounter" value="2" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -82,4 +87,8 @@
+       </map>
+     </option>
+   </component>
++  <component name="VcsManagerConfiguration">
++    <MESSAGE value="Added Finish&#10;Fixed variable names" />
++    <option name="LAST_COMMIT_MESSAGE" value="Added Finish&#10;Fixed variable names" />
++  </component>
+ </project>
+\ No newline at end of file
