@@ -44,7 +44,6 @@ public class BotLogic {
             default:
                 break;
         }
-
         return help();
 
     }
