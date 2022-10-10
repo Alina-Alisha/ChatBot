@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e0cb293-4c10-46b2-b058-961e9c980051" name="Changes" comment="Добавлены некоторые комментарии к методам.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_02_10_2022_13_28_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_02_10_2022_13_28__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BotLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BotLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HiddenWord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HiddenWord.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,6 +91,7 @@
       <workItem from="1665073469140" duration="1835000" />
       <workItem from="1665138465445" duration="16944000" />
       <workItem from="1665205130102" duration="5218000" />
+      <workItem from="1665381634703" duration="877000" />
     </task>
     <task id="LOCAL-00001" summary="Added Finish&#10;Fixed variable names">
       <created>1664460735349</created>

@@ -31,14 +31,14 @@ public class HiddenWord {
     }
 
     public boolean isWordSolved() { // проверяет, разгадано ли слово
-        boolean flag = true;
+        boolean isWordSolved = true;
         for (int i = 0; i < lengthOfHiddenWord - 1; i++) {
             if (!hiddenLetters.get(i)) {
-                flag = false;
+                isWordSolved = false;
                 break;
             }
         }
-        return flag;
+        return isWordSolved;
     }
 
     public String wordWithHiddenLetters() {

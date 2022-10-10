@@ -99,12 +99,12 @@ public class BotLogic {
     }
 
     public boolean thereAreActiveUsers(){ //ф-я проверяет, есть ли активные диалоги в массиве ArrayUsers
-        boolean flag = false;
+        boolean isConsistActvUser = false;
         for (int i = 0; i < ArrayUsers.size(); i++ ){
             if (ArrayUsers.get(i).isActive()){
-                flag = true;
+                isConsistActvUser = true;
             }
         }
-        return flag;
+        return isConsistActvUser;
     }
 }
