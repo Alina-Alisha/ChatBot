@@ -5,7 +5,7 @@ public class BotLogic {
 
     private String fileName = "Words.txt";
     private Database database = new Database(fileName);
-    private ArrayList<User> ArrayUsers = new ArrayList<>();
+    private ArrayList<User> arrayUsers = new ArrayList<>();
 
     public String help(){
         return """
@@ -88,20 +88,20 @@ public class BotLogic {
     }
     public User getUser(String Id){ //ф-я проверяет по id вел ли бот диалог с этим пользователем.
                                     // Если вел, возвращаем этого user, если нет - создаем новый user c данным id.
-        for (int i = 0; i < ArrayUsers.size(); i++ ){
-            if (ArrayUsers.get(i).returnId() == Id){
-                return ArrayUsers.get(i);
+        for (int i = 0; i < arrayUsers.size(); i++ ){
+            if (arrayUsers.get(i).returnId() == Id){
+                return arrayUsers.get(i);
             }
         }
         User user = new User(Id);
-        ArrayUsers.add(user);
+        arrayUsers.add(user);
         return user;
     }
 
     public boolean thereAreActiveUsers(){ //ф-я проверяет, есть ли активные диалоги в массиве ArrayUsers
         boolean isConsistActvUser = false;
-        for (int i = 0; i < ArrayUsers.size(); i++ ){
-            if (ArrayUsers.get(i).isActive()){
+        for (int i = 0; i < arrayUsers.size(); i++ ){
+            if (arrayUsers.get(i).isActive()){
                 isConsistActvUser = true;
             }
         }
