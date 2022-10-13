@@ -58,7 +58,7 @@ public class BotLogic {
         dialog.startProcessing();
         HiddenWord hiddenWord = new HiddenWord(database.generateWord(database.wordsArray(fileName)));
         dialog.addHiddenWord(hiddenWord);
-        String text = "Вот, держи новое слово\n"; // TODO: написать сообщение
+        String text = "Вот, держи новое слово\n";
         return text + hiddenWord.wordWithHiddenLetters();
 
     } // меняем поля в загаданном слове
@@ -68,10 +68,13 @@ public class BotLogic {
         return "Пока, до новых встреч! Если захочешь снова поиграть, просто нипиши \"start\"!";
     }
 
-    public String getAnswerOnLetter(char userMessage, User user){ //TODO:следует все сообщения тоже выделить в методы и уже возвращать методы
+    public String getAnswerOnLetter(char userMessage, User user){
         String text;
         int attempts = 8 - user.returnHiddenWord().mistake;
-        if (user.returnHiddenWord().isLetterFit(userMessage)) {
+        if(isRepeatedLetter(userMessage, user)){
+            return "Ты уже отгадал букву " + userMessage + ". Попробуй другую букву.";
+        }
+        else if (user.returnHiddenWord().isLetterFit(userMessage)) {
             if (user.returnHiddenWord().isWordSolved()) {
                 user.endProcessing();
                 return  user.returnHiddenWord().word +"\n"+
@@ -109,5 +112,9 @@ public class BotLogic {
             }
         }
         return isConsistActvUser;
+    }
+
+    public boolean isRepeatedLetter(char userMessage, User user){
+        return user.returnHiddenWord().wordWithHiddenLetters().contains(Character.toString(userMessage));
     }
 }
