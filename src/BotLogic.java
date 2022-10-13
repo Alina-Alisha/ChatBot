@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 
 public class BotLogic {
-    //TODO: обработать двойное введение одной и той же буквы
 
     private String fileName = "Words.txt";
     private Database database = new Database(fileName);
@@ -27,7 +26,7 @@ public class BotLogic {
 
     public String getAnswer(String userMessage, String Id){ // ф-я возвращает ответ бота на сообщение пользователя
         User user = getUser(Id);
-        if (userMessage.length() == 1){// проверяем, есть ли буква в загаданном слове, возвращает сообщение с ответом да/нет, + слово с отгаданными буквами
+        if (userMessage.length() == 1 && user.returnState() == "wordProcessing"){// проверяем, есть ли буква в загаданном слове, возвращает сообщение с ответом да/нет, + слово с отгаданными буквами
             char letter = userMessage.charAt(0);
             return getAnswerOnLetter(letter, user);      // если нет то + кол-во права на ошибку
         }
@@ -51,10 +50,12 @@ public class BotLogic {
         HiddenWord hiddenWord = new HiddenWord(database.generateWord(database.wordsArray(fileName)));
         dialog.addHiddenWord(hiddenWord);
         String text = "Отлично! Попробуй отгадать моё слово!\n";
+        dialog.startProcessing();
         return text + hiddenWord.wordWithHiddenLetters();
     }
 
     public String newWord(User dialog){ // ф-я возвращает новое загаданное слово
+        dialog.startProcessing();
         HiddenWord hiddenWord = new HiddenWord(database.generateWord(database.wordsArray(fileName)));
         dialog.addHiddenWord(hiddenWord);
         String text = "Вот, держи новое слово\n"; // TODO: написать сообщение
@@ -72,6 +73,7 @@ public class BotLogic {
         int attempts = 8 - user.returnHiddenWord().mistake;
         if (user.returnHiddenWord().isLetterFit(userMessage)) {
             if (user.returnHiddenWord().isWordSolved()) {
+                user.endProcessing();
                 return  user.returnHiddenWord().word +"\n"+
                         "Победа!\n" +
                         "Сыграем еще разок? Введи \"new word\"";
@@ -79,7 +81,8 @@ public class BotLogic {
                 text = "Угадал! Есть такая буква.\n";
 
         } else  if (user.returnHiddenWord().mistake == 9){
-            return "К сожалению, ты проиграл. Сыграем еще раз?Введи \"new word\"";
+            user.endProcessing();
+            return "К сожалению, ты проиграл. Сыграем еще раз? Введи \"new word\"";
         }else {
             text = "Промах. Здесь нет буквы ”" + userMessage + "”.\n" +
                     "У тебя есть еще " + attempts + " попыток.\n";
@@ -101,7 +104,7 @@ public class BotLogic {
     public boolean thereAreActiveUsers(){ //ф-я проверяет, есть ли активные диалоги в массиве ArrayUsers
         boolean isConsistActvUser = false;
         for (int i = 0; i < arrayUsers.size(); i++ ){
-            if (arrayUsers.get(i).isActive()){
+            if (arrayUsers.get(i).returnState() != "notActive"){
                 isConsistActvUser = true;
             }
         }

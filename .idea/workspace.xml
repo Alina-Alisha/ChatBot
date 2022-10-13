@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e0cb293-4c10-46b2-b058-961e9c980051" name="Changes" comment="Переименованы флага в thereAreActiveUsers() и isWordSolved()." />
+    <list default="true" id="3e0cb293-4c10-46b2-b058-961e9c980051" name="Changes" comment="Переименован массив пользователей в arrayUsers.">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_06_10_2022_19_28_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_06_10_2022_19_28__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BotLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BotLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/User.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,7 +48,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2FBPyYRjVuKpDlUqkWCUycXMRf4" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -86,7 +92,9 @@
       <workItem from="1665073469140" duration="1835000" />
       <workItem from="1665138465445" duration="16944000" />
       <workItem from="1665205130102" duration="5218000" />
-      <workItem from="1665381634703" duration="1226000" />
+      <workItem from="1665381634703" duration="2015000" />
+      <workItem from="1665478529438" duration="996000" />
+      <workItem from="1665676339225" duration="2962000" />
     </task>
     <task id="LOCAL-00001" summary="Added Finish&#10;Fixed variable names">
       <created>1664460735349</created>
@@ -137,7 +145,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665383170677</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Переименован массив пользователей в arrayUsers.">
+      <created>1665383366344</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1665383366344</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -189,6 +204,7 @@
     <MESSAGE value="Были переписаны help() и greeting().&#10;Были удалены неуспользуемые переменные, методы отдельные строки." />
     <MESSAGE value="Добавлены некоторые комментарии к методам." />
     <MESSAGE value="Переименованы флага в thereAreActiveUsers() и isWordSolved()." />
-    <option name="LAST_COMMIT_MESSAGE" value="Переименованы флага в thereAreActiveUsers() и isWordSolved()." />
+    <MESSAGE value="Переименован массив пользователей в arrayUsers." />
+    <option name="LAST_COMMIT_MESSAGE" value="Переименован массив пользователей в arrayUsers." />
   </component>
 </project>

@@ -4,19 +4,19 @@ public class User {
 
     private String Id; // имя/id пользователя
     private HiddenWord hidden_word;
-    private boolean dialogState; // переменная, которая показывает диалог активен или нет
+    private String dialogState; // переменная, которая показывает диалог активен или нет
 
 
     public User(String id){
         this.Id = id;
-        dialogState = true;
+        dialogState = "active";
     }
 
     public void finishDialog(){ // завершает диалог
-        dialogState = false;
+        dialogState = "notActive";
     }
 
-    public boolean isActive(){ // возвращает заначение состояния диалога
+    public String returnState(){ // возвращает заначение состояния диалога
         return dialogState;
     }
 
@@ -32,4 +32,12 @@ public class User {
    public String returnId(){
        return Id;
    }
+
+   public void startProcessing(){
+        dialogState = "wordProcessing";
+   }
+
+    public void endProcessing(){
+        dialogState = "active";
+    }
 }
