@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e0cb293-4c10-46b2-b058-961e9c980051" name="Changes" comment="feat: Была добавлена обработка буквы в состоянии">
+    <list default="true" id="3e0cb293-4c10-46b2-b058-961e9c980051" name="Changes" comment="feat: Добавлена обработка повторного ввода буквы&#10;&#10;Обработка повторного ввода буквы для случая, когда буква содержится в загаданном слове">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BotLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BotLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Database" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +92,9 @@
       <workItem from="1665205130102" duration="5218000" />
       <workItem from="1665381634703" duration="2015000" />
       <workItem from="1665478529438" duration="996000" />
-      <workItem from="1665676339225" duration="7347000" />
+      <workItem from="1665676339225" duration="8582000" />
+      <workItem from="1665732464677" duration="13000" />
+      <workItem from="1665771039081" duration="7922000" />
     </task>
     <task id="LOCAL-00001" summary="Added Finish&#10;Fixed variable names">
       <created>1664460735349</created>
@@ -156,7 +159,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665679476746</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="feat: Добавлена обработка повторного ввода буквы&#10;&#10;Обработка повторного ввода буквы для случая, когда буква содержится в загаданном слове">
+      <created>1665683908105</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1665683908105</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -210,23 +220,15 @@
     <MESSAGE value="Переименованы флага в thereAreActiveUsers() и isWordSolved()." />
     <MESSAGE value="Переименован массив пользователей в arrayUsers." />
     <MESSAGE value="feat: Была добавлена обработка буквы в состоянии" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: Была добавлена обработка буквы в состоянии" />
+    <MESSAGE value="feat: Добавлена обработка повторного ввода буквы&#10;&#10;Обработка повторного ввода буквы для случая, когда буква содержится в загаданном слове" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: Добавлена обработка повторного ввода буквы&#10;&#10;Обработка повторного ввода буквы для случая, когда буква содержится в загаданном слове" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/BotLogic.java</url>
-          <line>70</line>
-          <properties class="BotLogic" method="getAnswerOnLetter">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/BotLogic.java</url>
-          <line>116</line>
+          <line>138</line>
           <properties class="BotLogic" method="isRepeatedLetter">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />

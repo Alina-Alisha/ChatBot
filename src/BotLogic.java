@@ -1,10 +1,13 @@
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class BotLogic {
 
     private String fileName = "Words.txt";
     private Database database = new Database(fileName);
-    private ArrayList<User> arrayUsers = new ArrayList<>();
+    //private ArrayList<User> arrayUsers = new ArrayList<>();
+    private Map<String, User> dialogStateById = new HashMap<>();
 
     public String help(){
         return """
@@ -93,25 +96,23 @@ public class BotLogic {
         return text + user.returnHiddenWord().wordWithHiddenLetters();
     }
     public User getUser(String Id){ //ф-я проверяет по id вел ли бот диалог с этим пользователем.
-                                    // Если вел, возвращаем этого user, если нет - создаем новый user c данным id.
-        for (int i = 0; i < arrayUsers.size(); i++ ){
-            if (arrayUsers.get(i).returnId() == Id){
-                return arrayUsers.get(i);
-            }
+        if (dialogStateById.containsKey(Id)){
+            //TODO надо ли менять статус?
+            return dialogStateById.get(Id);
         }
         User user = new User(Id);
-        arrayUsers.add(user);
-        return user;
+        dialogStateById.put(Id, user);
+        return dialogStateById.get(Id);
     }
 
     public boolean thereAreActiveUsers(){ //ф-я проверяет, есть ли активные диалоги в массиве ArrayUsers
-        boolean isConsistActvUser = false;
-        for (int i = 0; i < arrayUsers.size(); i++ ){
-            if (arrayUsers.get(i).returnState() != "notActive"){
-                isConsistActvUser = true;
+        for (Map.Entry<String, User> pair : dialogStateById.entrySet()) {
+            if (pair.getValue().returnState() == "notActive"){
+                return false;
             }
         }
-        return isConsistActvUser;
+        return true;
+
     }
 
     public boolean isRepeatedLetter(char userMessage, User user){
