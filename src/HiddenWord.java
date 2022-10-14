@@ -10,29 +10,29 @@ public class HiddenWord {
         word = hiddenWord;
         lengthOfHiddenWord = hiddenWord.length();
         mistake = 0;
-        for (int i = 0; i < hiddenWord.length() - 1; i++) {
+        for (int i = 0; i < hiddenWord.length() ; i++) {
             hiddenLetters.add(false);
         }
     }
 
     public boolean isLetterFit(char letter) { // проверка, содержится ли буква в слове
-        boolean flag = false;
-        for (int i = 0; i < lengthOfHiddenWord - 1; i++) {
+        boolean isLetterFit = false;
+        for (int i = 0; i < lengthOfHiddenWord; i++) {
             if (word.charAt(i) == letter) {
                 hiddenLetters.set(i, true);
-                flag = true;
+                isLetterFit = true;
             }
         }
 
-        if (!flag)//обработка ошибок
+        if (!isLetterFit)//обработка ошибок
             mistake++;
 
-        return flag;
+        return isLetterFit;
     }
 
     public boolean isWordSolved() { // проверяет, разгадано ли слово
         boolean isWordSolved = true;
-        for (int i = 0; i < lengthOfHiddenWord - 1; i++) {
+        for (int i = 0; i < lengthOfHiddenWord; i++) {
             if (!hiddenLetters.get(i)) {
                 isWordSolved = false;
                 break;
@@ -43,7 +43,7 @@ public class HiddenWord {
 
     public String wordWithHiddenLetters() {
         StringBuilder word_with_hidden_letters = new StringBuilder();
-        for (int i = 0; i < lengthOfHiddenWord - 1; i++) {
+        for (int i = 0; i < lengthOfHiddenWord; i++) {
             if (hiddenLetters.get(i)) {
                 word_with_hidden_letters.append(word.charAt(i));
             } else {
@@ -52,7 +52,4 @@ public class HiddenWord {
         }
         return word_with_hidden_letters.toString();
     }
-
-
-
 }

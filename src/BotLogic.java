@@ -47,7 +47,7 @@ public class BotLogic {
 
     }
     public String start(User dialog){
-        HiddenWord hiddenWord = new HiddenWord(database.generateWord(database.wordsArray(fileName)));
+        HiddenWord hiddenWord = new HiddenWord(generateWord(database.words()));
         dialog.addHiddenWord(hiddenWord);
         String text = "Отлично! Попробуй отгадать моё слово!\n";
         dialog.startProcessing();
@@ -56,7 +56,7 @@ public class BotLogic {
 
     public String newWord(User dialog){ // ф-я возвращает новое загаданное слово
         dialog.startProcessing();
-        HiddenWord hiddenWord = new HiddenWord(database.generateWord(database.wordsArray(fileName)));
+        HiddenWord hiddenWord = new HiddenWord(generateWord(database.words()));
         dialog.addHiddenWord(hiddenWord);
         String text = "Вот, держи новое слово\n";
         return text + hiddenWord.wordWithHiddenLetters();
@@ -68,7 +68,7 @@ public class BotLogic {
         return "Пока, до новых встреч! Если захочешь снова поиграть, просто нипиши \"start\"!";
     }
 
-    public String getAnswerOnLetter(char userMessage, User user){
+    public String getAnswerOnLetter(char userMessage, User user){ //TODO: комментарии
         String text;
         int attempts = 8 - user.returnHiddenWord().mistake;
         if(isRepeatedLetter(userMessage, user)){
@@ -116,5 +116,10 @@ public class BotLogic {
 
     public boolean isRepeatedLetter(char userMessage, User user){
         return user.returnHiddenWord().wordWithHiddenLetters().contains(Character.toString(userMessage));
+    }
+
+    public String generateWord(ArrayList<String> wordsArray) { // ф-я генерирует рандомное слово, которое будет загадывать бот, передаем массив слов
+        int randNumber = (int) ( Math.random() * wordsArray.size() );
+        return wordsArray.get(randNumber);
     }
 }
