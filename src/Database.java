@@ -12,7 +12,7 @@ public class Database {
 
         String fileContent = "";
 
-        try(Reader reader = new FileReader("Words.txt")){
+        try(Reader reader = new FileReader(fileName)){
         BufferedReader buffReader = new BufferedReader(reader);
 
             while (buffReader.ready()) {
