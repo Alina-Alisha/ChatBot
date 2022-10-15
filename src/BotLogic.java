@@ -6,7 +6,6 @@ public class BotLogic {
 
     private String fileName = "Words.txt";
     private Database database = new Database(fileName);
-    //private ArrayList<User> arrayUsers = new ArrayList<>();
     private Map<String, User> dialogStateById = new HashMap<>();
 
     public String help(){
@@ -71,7 +70,7 @@ public class BotLogic {
         return "Пока, до новых встреч! Если захочешь снова поиграть, просто нипиши \"start\"!";
     }
 
-    public String getAnswerOnLetter(char userMessage, User user){ //TODO: комментарии
+    private String getAnswerOnLetter(char userMessage, User user){ //TODO: комментарии
         String text;
         int attempts = 8 - user.returnHiddenWord().mistake;
         if(isRepeatedLetter(userMessage, user)){
@@ -95,7 +94,7 @@ public class BotLogic {
         }
         return text + user.returnHiddenWord().wordWithHiddenLetters();
     }
-    public User getUser(String Id){ //ф-я проверяет по id вел ли бот диалог с этим пользователем.
+    private User getUser(String Id){ //ф-я проверяет по id вел ли бот диалог с этим пользователем.
         if (dialogStateById.containsKey(Id)){
             //TODO надо ли менять статус?
             return dialogStateById.get(Id);
@@ -115,11 +114,11 @@ public class BotLogic {
 
     }
 
-    public boolean isRepeatedLetter(char userMessage, User user){
+    private boolean isRepeatedLetter(char userMessage, User user){
         return user.returnHiddenWord().wordWithHiddenLetters().contains(Character.toString(userMessage));
     }
 
-    public String generateWord(ArrayList<String> wordsArray) { // ф-я генерирует рандомное слово, которое будет загадывать бот, передаем массив слов
+    private String generateWord(ArrayList<String> wordsArray) { // ф-я генерирует рандомное слово, которое будет загадывать бот, передаем массив слов
         int randNumber = (int) ( Math.random() * wordsArray.size() );
         return wordsArray.get(randNumber);
     }
