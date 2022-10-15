@@ -4,9 +4,13 @@ import java.util.Map;
 
 public class BotLogic {
 
-    private String fileName = "Words.txt";
+    private String fileName = new String();
     private Database database = new Database(fileName);
     private Map<String, User> dialogStateById = new HashMap<>();
+
+    BotLogic(String file){
+        fileName = file;
+    }
 
     public String help(){
         return """

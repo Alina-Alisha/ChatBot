@@ -2,8 +2,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-
-        BotLogic botLogic = new BotLogic();
+        BotLogic botLogic = new BotLogic("Words.txt");
         String Id = "1";
 
         System.out.println(botLogic.greeting());// ф-я, которая возвращает строку с приветствием
