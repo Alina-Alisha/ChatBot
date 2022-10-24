@@ -1,0 +1,13 @@
+package io.proj3ct.GameTGBot;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class GameTgBotApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(GameTgBotApplication.class, args);
+	}
+
+}
