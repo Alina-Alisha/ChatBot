@@ -97,9 +97,10 @@ public class GallowsGame {
         }
         else if (hiddenWord.isLetterFit(userMessage)) {
             if (hiddenWord.isWordSolved()) {
-                return  hiddenWord.word +"\n"+
-                        "Победа!\n" +
-                        "Сыграем еще разок? Введи \"new word\"";
+                state = State.notActive;
+                //return  hiddenWord.word +"\n"+
+                //        "Победа!\n" +
+                //        "Сыграем еще разок? Введи \"new word\"";
             }
             text = "Угадал! Есть такая буква.\n";
 
@@ -115,9 +116,11 @@ public class GallowsGame {
     }
 
     private String getAnswerOnFullWord(String userMessage){
-        if (hiddenWord.isFullWordIsHiddenWord(userMessage))
-            return "Победа!";
-        else{
+        if (hiddenWord.isFullWordIsHiddenWord(userMessage)){
+            //return "Победа!";
+            state = State.notActive;
+            return null;
+        } else{
             int attempts = 8 - hiddenWord.mistake;
             return "Не угадал, попробуй снова\n" +
                     "У тебя есть еще " + attempts + " попыток.";

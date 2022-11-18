@@ -5,36 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e0cb293-4c10-46b2-b058-961e9c980051" name="Changes" comment="feat: добавлена привязка к телеграму">
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HELP.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/proj3ct/GameTGBot/GameTgBotApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/proj3ct/GameTGBot/config/BotConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/proj3ct/GameTGBot/config/BotInitializer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/proj3ct/GameTGBot/service/TelegramBot.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/io/proj3ct/GameTGBot/GameTgBotApplicationTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/io/proj3ct/GameTGBot/GameTgBotApplication.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/io/proj3ct/GameTGBot/config/BotConfig.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/io/proj3ct/GameTGBot/config/BotInitializer.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/io/proj3ct/GameTGBot/service/TelegramBot.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ChatBot.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Words.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BotLogic.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Database.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/HiddenWord.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/proj3ct/GameTGBot/game/CitiesGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/proj3ct/GameTGBot/game/CitiesGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/proj3ct/GameTGBot/game/GallowsGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/proj3ct/GameTGBot/game/GallowsGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/proj3ct/GameTGBot/game/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/proj3ct/GameTGBot/game/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/proj3ct/GameTGBot/GameTgBotApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/proj3ct/GameTGBot/config/BotConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/proj3ct/GameTGBot/config/BotInitializer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/proj3ct/GameTGBot/service/TelegramBot.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +60,7 @@
     </option>
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectId" id="2FBPyYRjVuKpDlUqkWCUycXMRf4" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -89,22 +68,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/User/IdeaProjects/TelegramBot&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/User/IdeaProjects/TelegramBot",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\User\IdeaProjects\TelegramBot" />
@@ -118,17 +101,6 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="JetRunConfigurationType">
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="GameTgBotApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="GameTGBot" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="io.proj3ct.GameTGBot.GameTgBotApplication" />
@@ -182,6 +154,7 @@
       <workItem from="1666546995618" duration="2228000" />
       <workItem from="1666630520148" duration="3262000" />
       <workItem from="1666635567005" duration="378000" />
+      <workItem from="1668799231486" duration="4756000" />
     </task>
     <task id="LOCAL-00001" summary="Added Finish&#10;Fixed variable names">
       <created>1664460735349</created>

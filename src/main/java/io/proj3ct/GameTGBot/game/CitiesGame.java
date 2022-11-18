@@ -53,6 +53,12 @@ public class CitiesGame {
 
     }
 
+    public String return() {
+        state = State.active;
+        return generateRandomCity();
+
+    }
+
     private String finish() {
         state = State.notActive;
         return "";  // TODO: написать сообщение

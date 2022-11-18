@@ -32,7 +32,13 @@ public class User {
         if (getCitiesGameState() == CitiesGame.returnHintState()) { // проверка взял ли игрок подсказку, те активна ли игра в виселицу
             //return getCitiesGameGetAns(userMessage, database);
             if (getGallowsGameState() == GallowsGame.returnActiveState()) {
-                return gallowsGame.getAnswer(userMessage, database);
+                String answer = gallowsGame.getAnswer(userMessage, database);
+                if (answer != null) {
+                    return answer;
+                }
+                else{
+                    return citiesGame.continue();
+                }
             }
             else {
                 return gallowsGame.startFromCitiesGame(citiesGame.capEndLetter(), database);
