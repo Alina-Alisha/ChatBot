@@ -1,6 +1,7 @@
 package io.proj3ct.GameTGBot.service;
 
 import io.proj3ct.GameTGBot.config.BotConfig;
+import io.proj3ct.GameTGBot.game.BotLogic;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -11,6 +12,19 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 public class TelegramBot extends TelegramLongPollingBot {
 
     final BotConfig config;
+
+
+
+    String databaseFileNameWords = "Words.txt";
+    String databaseFileNameCities = "Cities.txt";
+    BotLogic botLogic = new BotLogic(databaseFileNameWords, databaseFileNameCities);
+    String Id = "1";
+
+
+
+
+
+
 
     public TelegramBot(BotConfig config){
         this.config = config;
@@ -34,25 +48,23 @@ public class TelegramBot extends TelegramLongPollingBot {
 
             long chatId = update.getMessage().getChatId();
 
+            String botMessage = botLogic.getAnswer(messageText, Id);
+            //sendMessage(chatId, botMessage);
+
             switch(messageText){
                 case "/start":
                     startCommandRecieved(chatId, update.getMessage().getChat().getFirstName());
                     break;
                 default:
-                        sendMessage(chatId, "Sorry, command was not recognized");
+                    sendMessage(chatId, botMessage);
 
             }
-
         }
-
     }
 
     private void startCommandRecieved(long chatId, String name)  {
-
-        String answer = "Hi, " + name + ", nice to meet you";
-
+        String answer = botLogic.greeting();
         sendMessage(chatId, answer);
-
     }
 
     private void sendMessage(long chatId, String textToSend)  {
@@ -69,4 +81,9 @@ public class TelegramBot extends TelegramLongPollingBot {
         }
 
     }
+
+
+
 }
+
+
