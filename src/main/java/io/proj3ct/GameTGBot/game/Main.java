@@ -6,7 +6,7 @@ public class Main {
         String databaseFileNameWords = "Words.txt";
         String databaseFileNameCities = "Cities.txt";
         BotLogic botLogic = new BotLogic(databaseFileNameWords, databaseFileNameCities);
-        String Id = "1";
+        long Id = 1;
 
         System.out.println(botLogic.greeting());// ф-я, которая возвращает строку с приветствием
         Scanner console = new Scanner(System.in);

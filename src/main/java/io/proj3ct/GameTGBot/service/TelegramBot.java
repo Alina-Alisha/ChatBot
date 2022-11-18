@@ -13,17 +13,9 @@ public class TelegramBot extends TelegramLongPollingBot {
 
     final BotConfig config;
 
-
-
     String databaseFileNameWords = "Words.txt";
     String databaseFileNameCities = "Cities.txt";
     BotLogic botLogic = new BotLogic(databaseFileNameWords, databaseFileNameCities);
-    String Id = "1";
-
-
-
-
-
 
 
     public TelegramBot(BotConfig config){
@@ -48,8 +40,7 @@ public class TelegramBot extends TelegramLongPollingBot {
 
             long chatId = update.getMessage().getChatId();
 
-            String botMessage = botLogic.getAnswer(messageText, Id);
-            //sendMessage(chatId, botMessage);
+            String botMessage = botLogic.getAnswer(messageText, chatId);
 
             switch(messageText){
                 case "/start":

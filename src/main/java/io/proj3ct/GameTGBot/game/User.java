@@ -6,7 +6,7 @@ public class User {
 
     //TODO: ????? использовать статические методы
 
-    private String Id; // имя/id пользователя
+    private long Id; // имя/id пользователя
     private GallowsGame gallowsGame;
     private CitiesGame citiesGame;
 
@@ -15,7 +15,7 @@ public class User {
     private State dialogState;
 
 
-    public User(String id) {
+    public User(long id) {
         this.Id = id;
         dialogState = State.active;
         citiesGame = new CitiesGame();

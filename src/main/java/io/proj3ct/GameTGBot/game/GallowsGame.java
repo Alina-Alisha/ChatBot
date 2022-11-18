@@ -76,10 +76,6 @@ public class GallowsGame {
     public String newWord(Database database){ // ф-я возвращает новое загаданное слово
         //dialog.startProcessing(); //TODO: добавить состояние обработка буквы
         hiddenWord = new HiddenWord(generateWord(database.returnWordsArray()));
-        //dialog.addHiddenWord(hiddenWord);
-
-
-        //hiddenWord = new HiddenWord(generateWord(database.returnCitiesArray()));
         String text = "Вот, держи новое слово\n";
 
         return text + hiddenWord.wordWithHiddenLetters();

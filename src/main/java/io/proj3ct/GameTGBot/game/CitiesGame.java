@@ -9,7 +9,6 @@ import java.util.Objects;
 
 public class CitiesGame {
     private Map<Character, ArrayList> citiesHashMap = new HashMap<>();
-    //private String databaseFileName;
     private Database database;
 
     enum State {active, notActive, hintProcessing} // состояния игры
@@ -20,7 +19,6 @@ public class CitiesGame {
     public CitiesGame(Database database) {
         state = State.active;
         this.database = database;
-        //ArrayList<String> wordsArray = database.returnCitiesArray();
         citiesHashMap = database.createMap();
     }
 
