@@ -5,15 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e0cb293-4c10-46b2-b058-961e9c980051" name="Changes" comment="feat: добавлена привязка к телеграму">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/proj3ct/GameTGBot/game/CitiesGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/proj3ct/GameTGBot/game/CitiesGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/proj3ct/GameTGBot/game/GallowsGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/proj3ct/GameTGBot/game/GallowsGame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/proj3ct/GameTGBot/game/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/proj3ct/GameTGBot/game/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/io/proj3ct/GameTGBot/GameTgBotApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/io/proj3ct/GameTGBot/config/BotConfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/io/proj3ct/GameTGBot/config/BotInitializer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/io/proj3ct/GameTGBot/service/TelegramBot.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +41,10 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/main/java/io/proj3ct/GameTGBot/game/CitiesGame.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -60,7 +58,7 @@
     </option>
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2FBPyYRjVuKpDlUqkWCUycXMRf4" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -154,7 +152,6 @@
       <workItem from="1666546995618" duration="2228000" />
       <workItem from="1666630520148" duration="3262000" />
       <workItem from="1666635567005" duration="378000" />
-      <workItem from="1668799231486" duration="4756000" />
     </task>
     <task id="LOCAL-00001" summary="Added Finish&#10;Fixed variable names">
       <created>1664460735349</created>

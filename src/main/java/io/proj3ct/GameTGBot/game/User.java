@@ -37,7 +37,7 @@ public class User {
                     return answer;
                 }
                 else{
-                    return citiesGame.continue();
+                    return citiesGame.continueCitiesGame();
                 }
             }
             else {

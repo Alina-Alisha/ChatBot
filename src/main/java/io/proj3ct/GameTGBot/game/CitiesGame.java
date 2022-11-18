@@ -53,7 +53,7 @@ public class CitiesGame {
 
     }
 
-    public String return() {
+    public String continueCitiesGame() {
         state = State.active;
         return generateRandomCity();
 
