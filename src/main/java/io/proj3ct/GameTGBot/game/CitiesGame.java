@@ -1,9 +1,5 @@
 package io.proj3ct.GameTGBot.game;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 //TODO: добавить историю названных слов
 
@@ -11,8 +7,8 @@ public class CitiesGame {
     private Map<Character, ArrayList> citiesHashMap = new HashMap<>();
     private Database database;
 
+    private ArrayList<String> historyOfCities = new ArrayList<>();
     enum State {active, notActive, hintProcessing} // состояния игры
-
     private State state;
     private String city;
 
@@ -40,10 +36,11 @@ public class CitiesGame {
             default:
                 break;
         }
+
         return getAnswerOnUsersCity(message);
 
-
     }
+
 
     public String start() {
         state = State.active;
@@ -112,6 +109,8 @@ public class CitiesGame {
         ArrayList cities = citiesHashMap.get(randLetter);
         city = (String) cities.get(randIndex);
 
+        historyOfCities.add(city);
+
         return city;
     }
 
@@ -133,17 +132,27 @@ public class CitiesGame {
         if (c == database.returnCitiesArray().size()) {
             return "Такого города не существует";
         }
-        {
-            char lastLetter = message.charAt(message.length() - 1);
-            lastLetter = String.valueOf(lastLetter).toUpperCase().charAt(0);
-            int numOfSameLetterCities = citiesHashMap.get(lastLetter).size();
-            int randIndex = (int) (Math.random() * numOfSameLetterCities);
-            ArrayList cities = citiesHashMap.get(lastLetter);
-            city = (String) cities.get(randIndex);
 
-            return city;
+        for (int i = 0; i < historyOfCities.size(); i++){
+            if (Objects.equals(historyOfCities.get(i), userCity))
+                return "Такой город уже был, придумай другой";
         }
+
+        historyOfCities.add(message);
+
+        char lastLetter = message.charAt(message.length() - 1);
+        lastLetter = String.valueOf(lastLetter).toUpperCase().charAt(0);
+        int numOfSameLetterCities = citiesHashMap.get(lastLetter).size();
+        int randIndex = (int) (Math.random() * numOfSameLetterCities);
+        ArrayList cities = citiesHashMap.get(lastLetter);
+        city = (String) cities.get(randIndex);
+
+        historyOfCities.add(city);
+
+        return city;
+
     }
+
 
 
     public State returnCitiesGameState() {
