@@ -8,7 +8,7 @@ public class BotLogic {
     private String fileNameWords;
     private String fileNameCities;
     private Database database; //база данных создается сразу и не передается в конструктор
-    private Map<String, User> dialogStateById = new HashMap<>();
+    private Map<Long, User> dialogStateById = new HashMap<>();
 
 
     public BotLogic(String fileNameWords, String fileNameCities) {
@@ -17,7 +17,7 @@ public class BotLogic {
         database = new Database(fileNameWords, fileNameCities);
     }
 
-    public String getAnswer(String userMessage, String id) {
+    public String getAnswer(String userMessage, long id) {
         User user = getUser(id);
         String answer = user.getAnswer(userMessage, database);
         if (answer == null) {
@@ -25,32 +25,11 @@ public class BotLogic {
         }
         return answer;
 
-        /*
-            if (user.getCitiesGameState() == user.getCitiesGameIsActive()) {// проверка активна ли игра в города
-            return user.getCitiesGameGetAns(userMessage, database);
-        } else if(user.getCitiesGameState() == user.getCitiesGameIsHint()){ // проверка взял ли игрок подсказку, те активна ли игра в виселицу
-            return user.getCitiesGameGetAns(userMessage, database);
-        }
-        else if(user.getGallowsGameState() == user.getGallowsGameIsActive()){
-            return user.getGallowsGameGetAns(userMessage, database);
-        }
-
-        switch (userMessage) {
-            case ("start cities game"):
-                return user.startCitiesGame(database);
-            case ("end cities game"):
-                return user.endCitiesGame();
-            default:
-                return help();
-        }
-
-         */
-
     }
 
 
     public boolean thereAreActiveUsers() { //ф-я проверяет, есть ли активные диалоги в массиве ArrayUsers
-        for (Map.Entry<String, User> pair : dialogStateById.entrySet()) {
+        for (Map.Entry<Long, User> pair : dialogStateById.entrySet()) {
             if (pair.getValue().getState() == pair.getValue().getStateNotActive()) {
                 return false;
             }
@@ -59,7 +38,7 @@ public class BotLogic {
 
     }
 
-    private User getUser(String Id) { //ф-я проверяет по id вел ли бот диалог с этим пользователем.
+    private User getUser(long Id) { //ф-я проверяет по id вел ли бот диалог с этим пользователем.
         if (dialogStateById.containsKey(Id)) {
             return dialogStateById.get(Id);
         }

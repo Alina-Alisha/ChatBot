@@ -24,7 +24,7 @@ public class CitiesGame {
 
     public CitiesGame() {
         state = State.notActive;
-    } //почему nonActive?
+    }
 
     public String getAnswer(String message, Database database) {
         switch (message) {
@@ -146,11 +146,6 @@ public class CitiesGame {
     }
 
 
-    public void saveHistoryOfDialog(String message) {
-
-    }
-
-
     public State returnCitiesGameState() {
         return state;
     }
@@ -166,7 +161,6 @@ public class CitiesGame {
     public static State returnHintState() {
         return State.hintProcessing;
     }
-
 
 
 }

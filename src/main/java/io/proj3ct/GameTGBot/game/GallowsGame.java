@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 public class GallowsGame {
     public HiddenWord hiddenWord;
-    enum  State{active, notActive, LetterProcessing}
+    enum  State{active, notActive}
     private State state;
 
     public String city;
@@ -33,11 +33,8 @@ public class GallowsGame {
         if (userMessage.length() == 1){// проверяем, есть ли буква в загаданном слове, возвращает сообщение с ответом да/нет, + слово с отгаданными буквами
             char letter = userMessage.charAt(0);
             return getAnswerOnLetter(letter, database);      // если нет то + кол-во права на ошибку
-        }/* TODO: разобраться, что здесь происходит
-        else if (userMessage.startsWith("guess the city on letter")) {
-            return guessTheCity(userMessage, database);
         }
-*/
+
         return getAnswerOnFullWord(userMessage);
     }
     public String help(){

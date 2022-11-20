@@ -4,8 +4,6 @@ public class User {
 
     //TODO:ссылка на историю диалогов
 
-    //TODO: ????? использовать статические методы
-
     private long Id; // имя/id пользователя
     private GallowsGame gallowsGame;
     private CitiesGame citiesGame;
