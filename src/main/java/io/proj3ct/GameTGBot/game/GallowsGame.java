@@ -8,6 +8,8 @@ public class GallowsGame {
     enum  State{active, notActive, LetterProcessing}
     private State state;
 
+    public String city;
+
     public GallowsGame(){
         state = State.notActive;
     }
@@ -61,8 +63,6 @@ public class GallowsGame {
     }
 
     public String guessTheCity(char letter, Database database){
-        //String firstLetterOfCity = String.valueOf(userMessage.charAt(userMessage.length()-1)).toUpperCase();
-        //Character letter = firstLetterOfCity.charAt(0);
         HashMap hashMap = database.getHashMap();
         ArrayList cities = (ArrayList) hashMap.get(letter);
         int randIndex = (int) (Math.random()* cities.size()+1);
@@ -71,7 +71,6 @@ public class GallowsGame {
         return hiddenWord.wordWithHiddenLetters();
     }
 
-    //todo: обработка проигрыша выигрыша, возвращение к игре city
 
     public String newWord(Database database){ // ф-я возвращает новое загаданное слово
         //dialog.startProcessing(); //TODO: добавить состояние обработка буквы
@@ -93,12 +92,13 @@ public class GallowsGame {
         }
         else if (hiddenWord.isLetterFit(userMessage)) {
             if (hiddenWord.isWordSolved()) {
+                city = hiddenWord.word;
                 state = State.notActive;
+                return null;
                 //return  hiddenWord.word +"\n"+
                 //        "Победа!\n" +
                 //        "Сыграем еще разок? Введи \"new word\"";
-            }
-            text = "Угадал! Есть такая буква.\n";
+            }else text = "Угадал! Есть такая буква.\n";
 
         } else  if (hiddenWord.mistake == 9){
             //return "К сожалению, ты проиграл. Сыграем еще раз? Введи \"new word\"";
@@ -114,6 +114,7 @@ public class GallowsGame {
     private String getAnswerOnFullWord(String userMessage){
         if (hiddenWord.isFullWordIsHiddenWord(userMessage)){
             //return "Победа!";
+            city = userMessage;
             state = State.notActive;
             return null;
         } else{
@@ -123,7 +124,7 @@ public class GallowsGame {
         }
     }
 
-        private boolean isRepeatedLetter(char userMessage){
+        private boolean isRepeatedLetter(char userMessage){ //TODO: не работает
         return hiddenWord.wordWithHiddenLetters().contains(Character.toString(userMessage));
     }
 

@@ -8,7 +8,7 @@ public class BotLogic {
     private String fileNameWords;
     private String fileNameCities;
     private Database database; //база данных создается сразу и не передается в конструктор
-    private Map<Long, User> dialogStateById = new HashMap<>();
+    private Map<String, User> dialogStateById = new HashMap<>();
 
 
     public BotLogic(String fileNameWords, String fileNameCities) {
@@ -17,7 +17,7 @@ public class BotLogic {
         database = new Database(fileNameWords, fileNameCities);
     }
 
-    public String getAnswer(String userMessage, long id) {
+    public String getAnswer(String userMessage, String id) {
         User user = getUser(id);
         String answer = user.getAnswer(userMessage, database);
         if (answer == null) {
@@ -50,7 +50,7 @@ public class BotLogic {
 
 
     public boolean thereAreActiveUsers() { //ф-я проверяет, есть ли активные диалоги в массиве ArrayUsers
-        for (Map.Entry<Long, User> pair : dialogStateById.entrySet()) {
+        for (Map.Entry<String, User> pair : dialogStateById.entrySet()) {
             if (pair.getValue().getState() == pair.getValue().getStateNotActive()) {
                 return false;
             }
@@ -59,7 +59,7 @@ public class BotLogic {
 
     }
 
-    private User getUser(long Id) { //ф-я проверяет по id вел ли бот диалог с этим пользователем.
+    private User getUser(String Id) { //ф-я проверяет по id вел ли бот диалог с этим пользователем.
         if (dialogStateById.containsKey(Id)) {
             return dialogStateById.get(Id);
         }
@@ -83,5 +83,4 @@ public class BotLogic {
                 Для подсказки введи "hint".
                 Для начала игры введи "start cities game"!""";
     }
-
 }

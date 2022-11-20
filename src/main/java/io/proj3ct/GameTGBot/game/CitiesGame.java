@@ -51,9 +51,9 @@ public class CitiesGame {
 
     }
 
-    public String continueCitiesGame() {
+    public String continueCitiesGame(String cityFromHint) {
         state = State.active;
-        return generateRandomCity();
+        return getAnswerOnUsersCity(cityFromHint);
 
     }
 
@@ -87,7 +87,7 @@ public class CitiesGame {
     private void hint(Database database) { // ф-я запускает виселицу, где игрок должен отгадать город, начинающийся с определенной буквы
         state = State.hintProcessing;
     }
-//TODO: разобраться с дублирующими методами endLetter и capEndLetter
+
     public char endLetter() { // ф-я выводит, город на какую букву должен назвать пользователь
         if (city.charAt(city.length() - 1) == 'ы' || city.charAt(city.length() - 1) == 'ь') {
             return city.charAt(city.length() - 2);
@@ -97,19 +97,12 @@ public class CitiesGame {
 
 
     public char capEndLetter() { // ф-я выводит, город на какую букву должен назвать пользователь
-        if (city.charAt(city.length() - 1) == 'ы' || city.charAt(city.length() - 1) == 'ь') {
-            char letter = city.charAt(city.length() - 2);
-            letter = String.valueOf(letter).toUpperCase().charAt(0);
-            return letter;
-        }
-        char letter = city.charAt(city.length() - 1);
-        letter = String.valueOf(letter).toUpperCase().charAt(0);
-        return letter;
+        return String.valueOf(endLetter()).toUpperCase().charAt(0);
     }
 
     private String generateRandomCity() { // ф-я генерирует город
-        int min = 0;//192;
-        int max = 25;//223;
+        int min = 0;
+        int max = 25;
         Character[] alph = {'А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н',
                 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ы', 'Ь', 'Э', 'Ю', 'Я'};
         int randLetterIndex = (int) (Math.random() * ++max) + min;
@@ -126,7 +119,7 @@ public class CitiesGame {
     private String getAnswerOnUsersCity(String message) {// ф-ю, которая генерирует город на заданную букву
         String userCity = message;
         char firstLetter = message.charAt(0);
-        firstLetter = String.valueOf(firstLetter).toLowerCase().charAt(0); //обратно в чар
+        firstLetter = String.valueOf(firstLetter).toLowerCase().charAt(0);
         int c = 0;
         if (endLetter() != firstLetter) {
             return "Город должен начинаться с последней буквы моего города, придумай другой.";

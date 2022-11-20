@@ -25,19 +25,17 @@ public class User {
     public String getAnswer(String userMessage, Database database) {
         if (getCitiesGameState() == CitiesGame.returnActiveState()) {// проверка активна ли игра в города
             String answer = citiesGame.getAnswer(userMessage, database);
-            if (answer != null) {
+            if (answer != null)
                 return answer;
-            }
+
         }
         if (getCitiesGameState() == CitiesGame.returnHintState()) { // проверка взял ли игрок подсказку, те активна ли игра в виселицу
-            //return getCitiesGameGetAns(userMessage, database);
             if (getGallowsGameState() == GallowsGame.returnActiveState()) {
                 String answer = gallowsGame.getAnswer(userMessage, database);
-                if (answer != null) {
+                if (answer != null)
                     return answer;
-                }
                 else{
-                    return citiesGame.continueCitiesGame();
+                    return citiesGame.continueCitiesGame(gallowsGame.city);
                 }
             }
             else {
