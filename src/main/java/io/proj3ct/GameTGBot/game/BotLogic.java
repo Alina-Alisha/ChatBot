@@ -44,7 +44,10 @@ public class BotLogic {
         return user.getImage();
     }
 
-
+    public boolean getImageState(long id){
+        User user = getUser(id);
+        return user.getImageState();
+    }
 
 
     public boolean thereAreActiveUsers() { //ф-я проверяет, есть ли активные диалоги в массиве ArrayUsers

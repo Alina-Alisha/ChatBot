@@ -126,6 +126,8 @@ public class CitiesGame {
 
         historyOfCities.add(city);
 
+        isAnswerCity = true;
+
         return city;
     }
 

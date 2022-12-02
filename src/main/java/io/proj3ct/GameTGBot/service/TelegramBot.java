@@ -51,7 +51,8 @@ public class TelegramBot extends TelegramLongPollingBot {
                     break;
                 default:
                     sendMessage(chatId, botLogic.getAnswer(messageText, chatId));
-                    sendImage(chatId, botLogic.getImageFile(chatId));
+                    if (botLogic.getImageState(chatId)) //!TODO: вынести в логику!
+                        sendImage(chatId, botLogic.getImageFile(chatId));
 
             }
         }
