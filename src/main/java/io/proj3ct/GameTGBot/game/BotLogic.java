@@ -1,7 +1,17 @@
 package io.proj3ct.GameTGBot.game;
 
+
+import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
+import org.telegram.telegrambots.meta.api.objects.InputFile;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
+
+
+
 
 public class BotLogic {
 
@@ -17,7 +27,7 @@ public class BotLogic {
         database = new Database(fileNameWords, fileNameCities);
     }
 
-    public String getAnswer(String userMessage, long id) {
+    public String getAnswer(String userMessage, long id){
         User user = getUser(id);
         String answer = user.getAnswer(userMessage, database);
         if (answer == null) {
@@ -26,6 +36,15 @@ public class BotLogic {
         return answer;
 
     }
+
+
+
+    public InputFile getImageFile(long id){
+        User user = getUser(id);
+        return user.getImage();
+    }
+
+
 
 
     public boolean thereAreActiveUsers() { //ф-я проверяет, есть ли активные диалоги в массиве ArrayUsers

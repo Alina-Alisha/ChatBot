@@ -1,8 +1,11 @@
 package io.proj3ct.GameTGBot.game;
 
+import org.telegram.telegrambots.meta.api.objects.InputFile;
+
+import java.io.IOException;
 import java.util.Scanner;
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args){
         String databaseFileNameWords = "Words.txt";
         String databaseFileNameCities = "Cities.txt";
         BotLogic botLogic = new BotLogic(databaseFileNameWords, databaseFileNameCities);

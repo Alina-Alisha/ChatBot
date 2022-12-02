@@ -1,5 +1,8 @@
 package io.proj3ct.GameTGBot.game;
 
+
+import org.telegram.telegrambots.meta.api.objects.InputFile;
+
 public class User {
 
     //TODO:ссылка на историю диалогов
@@ -20,7 +23,7 @@ public class User {
         gallowsGame = new GallowsGame();
     }
 
-    public String getAnswer(String userMessage, Database database) {
+    public String getAnswer(String userMessage, Database database){
         if (getCitiesGameState() == CitiesGame.returnActiveState()) {// проверка активна ли игра в города
             String answer = citiesGame.getAnswer(userMessage, database);
             if (answer != null)
@@ -41,7 +44,6 @@ public class User {
             }
         }
 
-
         switch (userMessage) {
             case ("start cities game"):
                 return startCitiesGame(database);
@@ -54,6 +56,11 @@ public class User {
         }
 
     }
+
+    public InputFile getImage(){
+        return citiesGame.getImageFile();
+    }
+    public boolean getImageState(){return citiesGame.isAnswerCity;}
 
     private String help(){
         if (getCitiesGameState() == CitiesGame.returnActiveState()){
@@ -87,7 +94,7 @@ public class User {
         return citiesGame.returnCitiesGameState();
     }
 
-    public String getCitiesGameGetAns(String message, Database database) { //ф-я возвращает ответ на сообщение пользователя в игре в города
+    public String getCitiesGameGetAns(String message, Database database){ //ф-я возвращает ответ на сообщение пользователя в игре в города
         return citiesGame.getAnswer(message, database);
     }
 

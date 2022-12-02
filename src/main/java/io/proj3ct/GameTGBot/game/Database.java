@@ -35,8 +35,8 @@ public class Database {
 
             reader.close();
             buffReader.close();
-        } catch (IOException e) { //TODO: исправить
-            e.printStackTrace();
+        } catch (IOException e) {
+            System.out.println("Файл не найден" + e.getMessage());
        }
 
         ArrayList<String> dataBase = new ArrayList<>();

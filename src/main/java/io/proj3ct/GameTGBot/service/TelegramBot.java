@@ -4,9 +4,13 @@ import io.proj3ct.GameTGBot.config.BotConfig;
 import io.proj3ct.GameTGBot.game.BotLogic;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import org.telegram.telegrambots.meta.api.methods.ParseMode;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
+import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+
 
 @Component
 public class TelegramBot extends TelegramLongPollingBot {
@@ -40,14 +44,14 @@ public class TelegramBot extends TelegramLongPollingBot {
 
             long chatId = update.getMessage().getChatId();
 
-            String botMessage = botLogic.getAnswer(messageText, chatId);
 
             switch(messageText){
                 case "/start":
                     startCommandRecieved(chatId, update.getMessage().getChat().getFirstName());
                     break;
                 default:
-                    sendMessage(chatId, botMessage);
+                    sendMessage(chatId, botLogic.getAnswer(messageText, chatId));
+                    sendImage(chatId, botLogic.getImageFile(chatId));
 
             }
         }
@@ -70,6 +74,21 @@ public class TelegramBot extends TelegramLongPollingBot {
         catch (TelegramApiException e){
 
         }
+
+    }
+
+    private void sendImage(long chatId, InputFile file) {
+        SendPhoto image = new SendPhoto();
+        image.setChatId(String.valueOf(chatId));
+        image.setPhoto(file);
+
+        try{
+            execute(image);
+        }
+        catch (TelegramApiException e){
+            System.out.println("Файл не найден:  " + e.getMessage());
+        }
+
 
     }
 
