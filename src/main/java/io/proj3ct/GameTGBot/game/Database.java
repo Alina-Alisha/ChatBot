@@ -15,7 +15,7 @@ public class Database {
     private ArrayList<String> wordsArray;
     private ArrayList<String> citiesArray;
     private Map<Character, ArrayList> citiesHashMap = new HashMap<>();
-    Database(String fileNameWords, String fileNameCities) {
+    public Database(String fileNameWords, String fileNameCities) {
         this.fileNameWords = fileNameWords;
         this.fileNameCities = fileNameCities;
         wordsArray = createArray(fileNameWords);

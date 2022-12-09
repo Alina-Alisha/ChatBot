@@ -1,14 +1,16 @@
 package io.proj3ct.GameTGBot.game;
+
 import java.util.*;
 
-//TODO: добавить историю названных слов
 
 public class CitiesGame {
     private Map<Character, ArrayList> citiesHashMap = new HashMap<>();
     private Database database;
 
     private ArrayList<String> historyOfCities = new ArrayList<>();
+
     enum State {active, notActive, hintProcessing} // состояния игры
+
     private State state;
     private String city;
 
@@ -22,7 +24,7 @@ public class CitiesGame {
         state = State.notActive;
     }
 
-    public String getAnswer(String message, Database database) {
+    public String getAnswer(String message) {
         switch (message) {
             case ("help"):
                 return help();
@@ -31,7 +33,7 @@ public class CitiesGame {
             case ("start"):
                 return greeting();
             case ("hint"):
-                hint(database);
+                hint();
                 return null;
             default:
                 break;
@@ -56,7 +58,7 @@ public class CitiesGame {
 
     private String finish() {
         state = State.notActive;
-        return "";  // TODO: написать сообщение
+        return "Хорошо поиграли!";
     }
 
     public String help() {
@@ -68,7 +70,7 @@ public class CitiesGame {
                 """;
     }
 
-    private String greeting() { //todo: поправить
+    private String greeting() {
         return """
                 Правила просты. Вы называете город, я
                 называю другой город на последнюю букву
@@ -81,7 +83,7 @@ public class CitiesGame {
                 """;
     }
 
-    private void hint(Database database) { // ф-я запускает виселицу, где игрок должен отгадать город, начинающийся с определенной буквы
+    private void hint() { // ф-я запускает виселицу, где игрок должен отгадать город, начинающийся с определенной буквы
         state = State.hintProcessing;
     }
 
@@ -133,7 +135,7 @@ public class CitiesGame {
             return "Такого города не существует";
         }
 
-        for (int i = 0; i < historyOfCities.size(); i++){
+        for (int i = 0; i < historyOfCities.size(); i++) {
             if (Objects.equals(historyOfCities.get(i), userCity))
                 return "Такой город уже был, придумай другой";
         }
@@ -154,7 +156,6 @@ public class CitiesGame {
     }
 
 
-
     public State returnCitiesGameState() {
         return state;
     }
@@ -163,11 +164,11 @@ public class CitiesGame {
         state = State.notActive;
     }
 
-    public static State returnActiveState() {
+    public State getActiveState() {
         return State.active;
     }
 
-    public static State returnHintState() {
+    public State getHintState() {
         return State.hintProcessing;
     }
 

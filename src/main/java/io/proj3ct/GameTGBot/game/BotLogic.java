@@ -2,23 +2,23 @@ package io.proj3ct.GameTGBot.game;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class BotLogic {
 
-    private String fileNameWords;
-    private String fileNameCities;
     private Database database; //база данных создается сразу и не передается в конструктор
     private Map<Long, User> dialogStateById = new HashMap<>();
 
 
-    public BotLogic(String fileNameWords, String fileNameCities) {
-        this.fileNameWords = fileNameWords;
-        this.fileNameCities = fileNameCities;
-        database = new Database(fileNameWords, fileNameCities);
+    public BotLogic(Database database) {
+        this.database = database;
     }
 
     public String getAnswer(String userMessage, long id) {
         User user = getUser(id);
+        if (Objects.equals(userMessage, "\\start")) {
+            return greeting();
+        }
         String answer = user.getAnswer(userMessage, database);
         if (answer == null) {
             return help();
@@ -49,7 +49,7 @@ public class BotLogic {
 
     private String help() {
         return """
-                Если ты забыл, как со  мной общаться, вот команды, которые я понимаю:
+                Вот команды, которые я понимаю:
                 1) Введи "start cities game", чтобы начать игру в города
                 2) Введи "end cities game", чтобы завершить игру
                 """;

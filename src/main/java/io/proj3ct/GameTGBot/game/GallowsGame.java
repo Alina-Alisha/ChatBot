@@ -8,7 +8,7 @@ public class GallowsGame {
     enum  State{active, notActive}
     private State state;
 
-    public String city;
+    private String city;
 
     public GallowsGame(){
         state = State.notActive;
@@ -70,7 +70,6 @@ public class GallowsGame {
 
 
     public String newWord(Database database){ // ф-я возвращает новое загаданное слово
-        //dialog.startProcessing(); //TODO: добавить состояние обработка буквы
         hiddenWord = new HiddenWord(generateWord(database.returnWordsArray()));
         String text = "Вот, держи новое слово\n";
 
@@ -92,13 +91,9 @@ public class GallowsGame {
                 city = hiddenWord.word;
                 state = State.notActive;
                 return null;
-                //return  hiddenWord.word +"\n"+
-                //        "Победа!\n" +
-                //        "Сыграем еще разок? Введи \"new word\"";
             }else text = "Угадал! Есть такая буква.\n";
 
         } else  if (hiddenWord.mistake == 9){
-            //return "К сожалению, ты проиграл. Сыграем еще раз? Введи \"new word\"";
             return "К сожалению, ты проиграл. Попробуй еще раз" + "\n" +
                     guessTheCity(hiddenWord.getHiddenwordFirstLetter(), database);
         }else {
@@ -121,7 +116,7 @@ public class GallowsGame {
         }
     }
 
-        private boolean isRepeatedLetter(char userMessage){ //TODO: не работает
+        private boolean isRepeatedLetter(char userMessage){
         return hiddenWord.wordWithHiddenLetters().contains(Character.toString(userMessage));
     }
 
@@ -136,6 +131,10 @@ public class GallowsGame {
 
     public static State returnActiveState() {
         return State.active;
+    } // СТАТИЧЕСКИЙ МЕТОД!!!!!
+    public String getCity() {
+        return city;
     }
+
 
 }
