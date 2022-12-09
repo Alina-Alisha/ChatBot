@@ -37,3 +37,6 @@ build/
 mvnw.cmd
 pom.xml
 HELP.md
+
+.env
+target
