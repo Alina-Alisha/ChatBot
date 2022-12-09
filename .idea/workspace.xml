@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e0cb293-4c10-46b2-b058-961e9c980051" name="Changes" comment="feat: добавлена привязка к телеграму">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/credentials.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/proj3ct/GameTGBot/game/CitiesGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/proj3ct/GameTGBot/game/CitiesGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/proj3ct/GameTGBot/game/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/proj3ct/GameTGBot/game/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,6 +64,7 @@
   <component name="ProjectId" id="2FBPyYRjVuKpDlUqkWCUycXMRf4" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
+    <option name="compactDirectories" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
@@ -79,26 +81,43 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/User/IdeaProjects/TelegramBot",
+    "last_opened_file_path": "C:/Users/HP/OneDrive - УрФУ/Документы/GitHub/ChatBot2/src/main/resources",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)"
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "spring.configuration.checksum": "f98581c26135e1e04ebdd11619d9ca87"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\HP\OneDrive - УрФУ\Документы\GitHub\ChatBot2\src\main\resources" />
       <recent name="C:\Users\User\IdeaProjects\TelegramBot" />
       <recent name="C:\Users\User\IdeaProjects\TelegramBot\src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\HP\OneDrive - УрФУ\Документы\GitHub\ChatBot2\src\main\java\io\proj3ct\GameTGBot\service" />
       <recent name="C:\Users\User\IdeaProjects\TelegramBot" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="test.java.io.proj3ct.GameTGBot" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.GoogleSheets">
+    <configuration name="GoogleSheets" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="io.proj3ct.GameTGBot.service.GoogleSheets" />
+      <module name="GameTGBot" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.proj3ct.GameTGBot.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="GameTgBotApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="GameTGBot" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="io.proj3ct.GameTGBot.GameTgBotApplication" />
@@ -114,6 +133,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.GoogleSheets" />
         <item itemvalue="Spring Boot.GameTgBotApplication" />
       </list>
     </recent_temporary>
@@ -152,6 +172,9 @@
       <workItem from="1666546995618" duration="2228000" />
       <workItem from="1666630520148" duration="3262000" />
       <workItem from="1666635567005" duration="378000" />
+      <workItem from="1670426278834" duration="238000" />
+      <workItem from="1670426536851" duration="5125000" />
+      <workItem from="1670595472328" duration="9627000" />
     </task>
     <task id="LOCAL-00001" summary="Added Finish&#10;Fixed variable names">
       <created>1664460735349</created>
@@ -302,7 +325,7 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/GameLogic/HiddenWord.java</url>
           <line>43</line>
-          <properties class="HiddenWord" method="wordWithHiddenLetters">
+          <properties class="HiddenWord">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
@@ -311,7 +334,7 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/GameLogic/BotLogic.java</url>
           <line>10</line>
-          <properties class="BotLogic" method="&lt;init&gt;">
+          <properties class="BotLogic">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
@@ -323,5 +346,14 @@
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="clientSecrets" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
