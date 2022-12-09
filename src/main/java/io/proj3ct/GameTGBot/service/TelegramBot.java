@@ -2,6 +2,7 @@ package io.proj3ct.GameTGBot.service;
 
 import io.proj3ct.GameTGBot.config.BotConfig;
 import io.proj3ct.GameTGBot.game.BotLogic;
+import io.proj3ct.GameTGBot.game.Database;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -15,7 +16,8 @@ public class TelegramBot extends TelegramLongPollingBot {
 
     String databaseFileNameWords = "Words.txt";
     String databaseFileNameCities = "Cities.txt";
-    BotLogic botLogic = new BotLogic(databaseFileNameWords, databaseFileNameCities);
+    Database database = new Database(databaseFileNameWords, databaseFileNameCities);
+    BotLogic botLogic = new BotLogic(database);
 
 
     public TelegramBot(BotConfig config){
