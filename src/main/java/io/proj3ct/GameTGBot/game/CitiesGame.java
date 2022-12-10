@@ -164,11 +164,11 @@ public class CitiesGame {
         state = State.notActive;
     }
 
-    public State getActiveState() {
+    public static State getActiveState() {
         return State.active;
     }
 
-    public State getHintState() {
+    public static State getHintState() {
         return State.hintProcessing;
     }
 

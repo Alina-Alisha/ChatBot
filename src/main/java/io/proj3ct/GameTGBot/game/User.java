@@ -20,13 +20,13 @@ public class User {
     }
 
     public String getAnswer(String userMessage, Database database) {
-        if (getCitiesGameState() == citiesGame.getActiveState()) {// проверка активна ли игра в города
+        if (getCitiesGameState() == CitiesGame.getActiveState()) {// проверка активна ли игра в города
             String answer = citiesGame.getAnswer(userMessage);
             if (answer != null)
                 return answer;
 
         }
-        if (getCitiesGameState() == citiesGame.getHintState()) { // проверка взял ли игрок подсказку, те активна ли игра в виселицу
+        if (getCitiesGameState() == CitiesGame.getHintState()) { // проверка взял ли игрок подсказку, те активна ли игра в виселицу
             if (getGallowsGameState() == GallowsGame.returnActiveState()) {
                 String answer = gallowsGame.getAnswer(userMessage, database);
                 if (answer != null)
@@ -50,9 +50,9 @@ public class User {
     }
 
     private String help() {
-        if (getCitiesGameState() == citiesGame.getActiveState()) {
+        if (getCitiesGameState() == CitiesGame.getActiveState()) {
             return citiesGame.help();
-        } else if (getCitiesGameState() == citiesGame.getHintState()) {
+        } else if (getCitiesGameState() == CitiesGame.getHintState()) {
             return gallowsGame.help();
         }
         return null;

@@ -105,7 +105,6 @@ public class GallowsGame {
 
     private String getAnswerOnFullWord(String userMessage){
         if (hiddenWord.isFullWordIsHiddenWord(userMessage)){
-            //return "Победа!";
             city = userMessage;
             state = State.notActive;
             return null;
@@ -131,7 +130,7 @@ public class GallowsGame {
 
     public static State returnActiveState() {
         return State.active;
-    } // СТАТИЧЕСКИЙ МЕТОД!!!!!
+    }
     public String getCity() {
         return city;
     }

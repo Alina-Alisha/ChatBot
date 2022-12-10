@@ -70,6 +70,7 @@ public class TelegramBot extends TelegramLongPollingBot {
             execute(message);
         }
         catch (TelegramApiException e){
+            System.out.println("Файл не найден: " + e.getMessage());
 
         }
 
