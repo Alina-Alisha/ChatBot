@@ -7,8 +7,14 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
+import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Component
@@ -47,7 +53,7 @@ public class TelegramBot extends TelegramLongPollingBot {
 
             switch(messageText){
                 case "/start":
-                    startCommandRecieved(chatId, update.getMessage().getChat().getFirstName());
+                    startCommandRecieved(chatId);
                     break;
                 default:
                     sendMessage(chatId, botLogic.getAnswer(messageText, chatId));
@@ -58,9 +64,10 @@ public class TelegramBot extends TelegramLongPollingBot {
         }
     }
 
-    private void startCommandRecieved(long chatId, String name)  {
+    private void startCommandRecieved(long chatId)  {
         String answer = botLogic.greeting();
         sendMessage(chatId, answer);
+
     }
 
     private void sendMessage(long chatId, String textToSend)  {
@@ -68,6 +75,8 @@ public class TelegramBot extends TelegramLongPollingBot {
         SendMessage message = new SendMessage();
         message.setChatId(String.valueOf(chatId));
         message.setText(textToSend);
+
+        createKeyboardForMessage(botLogic.getKeyboardRows(chatId), message);
 
         try{
             execute(message);
@@ -90,6 +99,13 @@ public class TelegramBot extends TelegramLongPollingBot {
             System.out.println("Файл не найден:  " + e.getMessage());
         }
     }
+
+    private void createKeyboardForMessage(List<KeyboardRow> KeyboardRows, SendMessage message){
+        ReplyKeyboardMarkup keyboardMarkup = new ReplyKeyboardMarkup();
+        keyboardMarkup.setKeyboard(KeyboardRows);
+        message.setReplyMarkup(keyboardMarkup);
+    }
+
 }
 
 

@@ -2,9 +2,11 @@ package io.proj3ct.GameTGBot.game;
 import io.proj3ct.GameTGBot.dataBase.dataBase;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 
 
 public class BotLogic {
@@ -33,6 +35,11 @@ public class BotLogic {
         dataBase.writeDataInTable(id, user.historyOfDialog); //сохранили историю диалога для конкретного пользователя
         return answer;
 
+    }
+
+    public List<KeyboardRow> getKeyboardRows(long id){
+        User user = getUser(id);
+        return user.KeyboardRowsForMessage();
     }
 
     public InputFile getImageFile(long id){

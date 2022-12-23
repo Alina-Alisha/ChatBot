@@ -1,7 +1,10 @@
 package io.proj3ct.GameTGBot.game;
 
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
+
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class GallowsGame {
     public HiddenWord hiddenWord;
@@ -37,6 +40,16 @@ public class GallowsGame {
 
         return getAnswerOnFullWord(userMessage);
     }
+
+    public static List<KeyboardRow> KeyboardRowsForGallowsGame(){
+        List<KeyboardRow> KeyboardRows = new ArrayList<>();
+        KeyboardRow row = new KeyboardRow();
+        row.add("help");
+        row.add("finish");
+        KeyboardRows.add(row);
+        return KeyboardRows;
+    }
+
     public String help(){
         return """
                     Я с радостью поиграю с тобой в виселицу!

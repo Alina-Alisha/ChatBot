@@ -1,6 +1,7 @@
 package io.proj3ct.GameTGBot.game;
 
 import org.telegram.telegrambots.meta.api.objects.InputFile;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -53,7 +54,16 @@ public class CitiesGame {
         }
 
         return getAnswerOnUsersCity(message);
+    }
 
+    public static List<KeyboardRow> KeyboardRowsForCity(){
+        List<KeyboardRow> KeyboardRows = new ArrayList<>();
+        KeyboardRow row = new KeyboardRow();
+        row.add("help");
+        row.add("hint");
+        row.add("finish");
+        KeyboardRows.add(row);
+        return KeyboardRows;
     }
 
 
@@ -77,9 +87,8 @@ public class CitiesGame {
     public String help() {
         return """
                 Если ты забыл, как со мной общаться, вот команды, которые я понимаю:
-                1) Введи "start cities game", чтобы начать игру с начала.
-                2) Введи "hint", если не можешь придумать город на заданную букву, и получишь подсказку.
-                3) Введи "finish", чтобы завершить игру
+                1) Введи "hint", если не можешь придумать город на заданную букву, и получишь подсказку.
+                2) Введи "finish", чтобы завершить игру
                 """;
     }
 

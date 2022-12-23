@@ -18,7 +18,7 @@ public class dataBase {
             DriverManager.registerDriver(driver);
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
             Statement statement = connection.createStatement();
-            //statement.execute("delete from users");
+            statement.execute("delete from users");
             String query = "INSERT INTO users(id, dialogHistory) VALUES (?,?)";
             PreparedStatement state = connection.prepareStatement( query  );
             state.setLong( 1,chatId );
