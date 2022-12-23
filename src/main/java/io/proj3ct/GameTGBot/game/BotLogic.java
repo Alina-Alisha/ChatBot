@@ -1,25 +1,21 @@
 package io.proj3ct.GameTGBot.game;
-
-
-import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
+import io.proj3ct.GameTGBot.dataBase.dataBase;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
-import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-
-
+import org.telegram.telegrambots.meta.api.objects.Update;
 
 
 public class BotLogic {
 
+    public Update update;
     private String fileNameWords;
     private String fileNameCities;
     private Database database; //база данных создается сразу и не передается в конструктор
     private Map<Long, User> dialogStateById = new HashMap<>();
 
+    private dataBase dataBase = new dataBase();
 
     public BotLogic(String fileNameWords, String fileNameCities) {
         this.fileNameWords = fileNameWords;
@@ -33,11 +29,11 @@ public class BotLogic {
         if (answer == null) {
             return help();
         }
+        user.historyOfDialog += userMessage + "\n"+ answer +"\n";
+        dataBase.writeDataInTable(id, user.historyOfDialog); //сохранили историю диалога для конкретного пользователя
         return answer;
 
     }
-
-
 
     public InputFile getImageFile(long id){
         User user = getUser(id);
@@ -49,22 +45,13 @@ public class BotLogic {
         return user.getImageState();
     }
 
+    private User getUser(long Id) {//ф-я проверяет по id вел ли бот диалог с этим пользователем.
 
-    public boolean thereAreActiveUsers() { //ф-я проверяет, есть ли активные диалоги в массиве ArrayUsers
-        for (Map.Entry<Long, User> pair : dialogStateById.entrySet()) {
-            if (pair.getValue().getState() == pair.getValue().getStateNotActive()) {
-                return false;
-            }
-        }
-        return true;
-
-    }
-
-    private User getUser(long Id) { //ф-я проверяет по id вел ли бот диалог с этим пользователем.
         if (dialogStateById.containsKey(Id)) {
             return dialogStateById.get(Id);
         }
         User user = new User(Id);
+        dataBase.writeDataInTable(Id,""); //внесли пользоватея в базу
         dialogStateById.put(Id, user);
         return dialogStateById.get(Id);
     }

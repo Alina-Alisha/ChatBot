@@ -10,6 +10,7 @@ public class User {
     private long Id; // имя/id пользователя
     private GallowsGame gallowsGame;
     private CitiesGame citiesGame;
+    public String historyOfDialog;
 
     private enum State {active, notActive, citiesGame, gallowsGame} // возможные состояния диалога
 

@@ -4,7 +4,6 @@ import io.proj3ct.GameTGBot.config.BotConfig;
 import io.proj3ct.GameTGBot.game.BotLogic;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
-import org.telegram.telegrambots.meta.api.methods.ParseMode;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
@@ -16,7 +15,6 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 public class TelegramBot extends TelegramLongPollingBot {
 
     final BotConfig config;
-
     String databaseFileNameWords = "Words.txt";
     String databaseFileNameCities = "Cities.txt";
     BotLogic botLogic = new BotLogic(databaseFileNameWords, databaseFileNameCities);
@@ -38,6 +36,8 @@ public class TelegramBot extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
+
+        botLogic.update = update;
 
         if (update.hasMessage() && update.getMessage().hasText()){
             String messageText = update.getMessage().getText();
@@ -89,12 +89,7 @@ public class TelegramBot extends TelegramLongPollingBot {
         catch (TelegramApiException e){
             System.out.println("Файл не найден:  " + e.getMessage());
         }
-
-
     }
-
-
-
 }
 
 
