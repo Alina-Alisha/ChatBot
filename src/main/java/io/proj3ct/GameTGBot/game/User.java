@@ -27,7 +27,7 @@ public class User {
         gallowsGame = new GallowsGame();
     }
 
-    public String getAnswer(String userMessage, Database database){
+    public String getAnswer(String userMessage, Database database) {
         if (getCitiesGameState() == CitiesGame.returnActiveState()) {// проверка активна ли игра в города
             String answer = citiesGame.getAnswer(userMessage, database);
             if (answer != null)
@@ -39,11 +39,10 @@ public class User {
                 String answer = gallowsGame.getAnswer(userMessage, database);
                 if (answer != null)
                     return answer;
-                else{
+                else {
                     return citiesGame.continueCitiesGame(gallowsGame.city);
                 }
-            }
-            else {
+            } else {
                 return gallowsGame.startFromCitiesGame(citiesGame.capEndLetter(), database);
             }
         }
@@ -60,18 +59,21 @@ public class User {
         }
 
     }
-/*
-    public InputFile getImage(){
-        return citiesGame.getImageFile();
+
+    /*
+        public InputFile getImage(){
+            return citiesGame.getImageFile();
+        }
+
+     */
+    public boolean getImageState() {
+        return citiesGame.isAnswerCity;
     }
 
- */
-    public boolean getImageState(){return citiesGame.isAnswerCity;}
-
-    private String help(){
-        if (getCitiesGameState() == CitiesGame.returnActiveState()){
+    private String help() {
+        if (getCitiesGameState() == CitiesGame.returnActiveState()) {
             return citiesGame.help();
-        } else if (getCitiesGameState() == CitiesGame.returnHintState()){
+        } else if (getCitiesGameState() == CitiesGame.returnHintState()) {
             return gallowsGame.help();
         }
         return null;
@@ -100,7 +102,7 @@ public class User {
         return citiesGame.returnCitiesGameState();
     }
 
-    public String getCitiesGameGetAns(String message, Database database){ //ф-я возвращает ответ на сообщение пользователя в игре в города
+    public String getCitiesGameGetAns(String message, Database database) { //ф-я возвращает ответ на сообщение пользователя в игре в города
         return citiesGame.getAnswer(message, database);
     }
 
@@ -131,11 +133,28 @@ public class User {
     public GallowsGame.State getGallowsGameIsActive() {
         return GallowsGame.returnActiveState();
     }
-    public List<KeyboardRow> KeyboardRowsForMessage(){
-        if (getCitiesGameState() == CitiesGame.returnActiveState())
-            return CitiesGame.KeyboardRowsForCity();
-        if (getCitiesGameState() == CitiesGame.returnHintState())
-            return GallowsGame.KeyboardRowsForGallowsGame();
+
+    public List<KeyboardRow> KeyboardRowsForMessage() {
+        if (getCitiesGameState() == CitiesGame.returnActiveState()) {
+            List<KeyboardRow> KeyboardRows = new ArrayList<>();
+            KeyboardRow row = new KeyboardRow();
+            for (int i = 0; i < CitiesGame.cityKeyboard().size(); i++) {
+                row.add(CitiesGame.cityKeyboard().get(i));
+            }
+            KeyboardRows.add(row);
+
+            return KeyboardRows;
+        }
+        if (getCitiesGameState() == CitiesGame.returnHintState()) {
+            List<KeyboardRow> KeyboardRows = new ArrayList<>();
+            KeyboardRow row = new KeyboardRow();
+            for (int i = 0; i < GallowsGame.hintKeyboard().size(); i++) {
+                row.add(GallowsGame.hintKeyboard().get(i));
+            }
+            KeyboardRows.add(row);
+
+            return KeyboardRows;
+        }
 
         List<KeyboardRow> KeyboardRows = new ArrayList<>();
         KeyboardRow row = new KeyboardRow();
@@ -144,7 +163,8 @@ public class User {
         KeyboardRows.add(row);
         return KeyboardRows;
     }
-    public InputFile getImage(){
+
+    public InputFile getImage() {
         if (getGallowsGameState() == GallowsGame.returnActiveState()){
             return null;
         }

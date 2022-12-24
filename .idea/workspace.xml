@@ -5,18 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e0cb293-4c10-46b2-b058-961e9c980051" name="Changes" comment="feat: добавлен README.md">
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/proj3ct/GameTGBot/game/City.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/proj3ct/GameTGBot/dataBase/dataBase.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/proj3ct/GameTGBot/game/BotLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/proj3ct/GameTGBot/game/BotLogic.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/proj3ct/GameTGBot/game/CitiesGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/proj3ct/GameTGBot/game/CitiesGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/proj3ct/GameTGBot/game/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/proj3ct/GameTGBot/game/Database.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/proj3ct/GameTGBot/game/GallowsGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/proj3ct/GameTGBot/game/GallowsGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/proj3ct/GameTGBot/game/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/proj3ct/GameTGBot/game/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/proj3ct/GameTGBot/game/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/proj3ct/GameTGBot/game/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/proj3ct/GameTGBot/service/GoogleSheets.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/proj3ct/GameTGBot/service/GoogleSheets.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/proj3ct/GameTGBot/service/TelegramBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/proj3ct/GameTGBot/service/TelegramBot.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/credentials.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/credentials.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tokens/StoredCredential" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,29 +72,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/HP/OneDrive - УрФУ/Документы/GitHub/ChatBotPOLINA",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "spring.configuration.checksum": "f98581c26135e1e04ebdd11619d9ca87"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/HP/OneDrive - УрФУ/Документы/GitHub/ChatBotPOLINA&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;f98581c26135e1e04ebdd11619d9ca87&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\HP\OneDrive - УрФУ\Документы\GitHub\ChatBotPOLINA" />
@@ -107,6 +103,7 @@
       <recent name="C:\Users\User\IdeaProjects\TelegramBot\src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\User\IdeaProjects\A\src\main\resources" />
       <recent name="C:\Users\HP\OneDrive - УрФУ\Документы\GitHub\ChatBotPOLINA\src\main\resources" />
       <recent name="C:\Users\HP\OneDrive - УрФУ\Документы\GitHub\ChatBotPOLINA\src\main\java\io\proj3ct\GameTGBot\service" />
       <recent name="C:\Users\HP\OneDrive - УрФУ\Документы\GitHub\ChatBot2\src\main\java\io\proj3ct\GameTGBot\service" />
@@ -127,17 +124,6 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <option name="filePath" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -203,6 +189,7 @@
       <workItem from="1670595472328" duration="9627000" />
       <workItem from="1671842155265" duration="1026000" />
       <workItem from="1671845170907" duration="11212000" />
+      <workItem from="1671857839894" duration="2485000" />
     </task>
     <task id="LOCAL-00001" summary="Added Finish&#10;Fixed variable names">
       <created>1664460735349</created>
@@ -387,7 +374,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/io/proj3ct/GameTGBot/game/GallowsGame.java</url>
-          <line>65</line>
+          <line>62</line>
           <properties class="io.proj3ct.GameTGBot.game.GallowsGame" method="guessTheCity">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -396,7 +383,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/io/proj3ct/GameTGBot/game/GallowsGame.java</url>
-          <line>60</line>
+          <line>57</line>
           <properties class="io.proj3ct.GameTGBot.game.GallowsGame" method="startFromCitiesGame">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -405,7 +392,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/io/proj3ct/GameTGBot/game/GallowsGame.java</url>
-          <line>21</line>
+          <line>18</line>
           <properties class="io.proj3ct.GameTGBot.game.GallowsGame" method="getAnswer">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -414,7 +401,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/io/proj3ct/GameTGBot/game/GallowsGame.java</url>
-          <line>113</line>
+          <line>110</line>
           <properties class="io.proj3ct.GameTGBot.game.GallowsGame" method="getAnswerOnFullWord">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -423,8 +410,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/io/proj3ct/GameTGBot/game/CitiesGame.java</url>
-          <line>217</line>
-          <properties class="io.proj3ct.GameTGBot.game.CitiesGame" method="getImageFile">
+          <line>212</line>
+          <properties class="io.proj3ct.GameTGBot.game.CitiesGame">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
@@ -432,8 +419,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/io/proj3ct/GameTGBot/game/CitiesGame.java</url>
-          <line>203</line>
-          <properties class="io.proj3ct.GameTGBot.game.CitiesGame" method="saveImage">
+          <line>198</line>
+          <properties class="io.proj3ct.GameTGBot.game.CitiesGame">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
@@ -441,8 +428,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/io/proj3ct/GameTGBot/game/User.java</url>
-          <line>146</line>
-          <properties class="io.proj3ct.GameTGBot.game.User" method="getImage">
+          <line>166</line>
+          <properties class="io.proj3ct.GameTGBot.game.User">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
