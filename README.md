@@ -1,4 +1,4 @@
-<h1 align="center">Bot :game:</h1>
+<h1 align="center">Bot </h1>
 <p align="center">
   <img src="https://img.shields.io/badge/author-AlinaAlisha%20%26%20Samareva%20%26%20DarthFinn-blue" alt="author: Kuzuru%26LT">
   <img src="https://img.shields.io/npm/l/apache" alt="license: MIT">
