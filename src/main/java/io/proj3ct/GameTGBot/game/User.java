@@ -145,6 +145,9 @@ public class User {
         return KeyboardRows;
     }
     public InputFile getImage(){
+        if (getGallowsGameState() == GallowsGame.returnActiveState()){
+            return null;
+        }
         return citiesGame.getImageFile();
     }
 }

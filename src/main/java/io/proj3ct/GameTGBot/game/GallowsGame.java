@@ -65,9 +65,10 @@ public class GallowsGame {
 
     public String guessTheCity(char letter, Database database){
         HashMap hashMap = database.getHashMap();
-        ArrayList cities = (ArrayList) hashMap.get(letter);
+        ArrayList<City> cities = (ArrayList<City>)  hashMap.get(letter);
         int randIndex = (int) (Math.random()* cities.size()+1);
-        hiddenWord = new HiddenWord((String) cities.get(randIndex).toString());
+        //hiddenWord = new HiddenWord((String) cities.get(randIndex));
+        hiddenWord = new HiddenWord((String) cities.get(randIndex).getName());
         hiddenWord.hiddenLetters.set(0, true) ;
         return hiddenWord.wordWithHiddenLetters();
     }

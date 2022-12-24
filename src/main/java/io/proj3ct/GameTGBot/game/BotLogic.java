@@ -41,7 +41,7 @@ public class BotLogic {
         if (answer == null) {
             return help();
         }
-        user.historyOfDialog += userMessage + "\n"+ answer +"\n";
+
 
         return answer;
 
@@ -93,6 +93,10 @@ public class BotLogic {
     }
     public InputFile getImageFile(long id){
         User user = getUser(id);
-        return user.getImage();
+        if (user.getImage() != null)
+            return user.getImage();
+        else{
+            return null;
+        }
     }
 }
