@@ -1,6 +1,7 @@
 package io.proj3ct.GameTGBot.game;
 
 import org.telegram.telegrambots.meta.api.objects.InputFile;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -12,11 +13,10 @@ import java.net.URL;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 //TODO: добавить историю названных слов
 
 public class CitiesGame {
-    private Map<Character, ArrayList> citiesHashMap = new HashMap<>();
+    //private Map<Character, ArrayList> citiesHashMap = new HashMap<>();
     private Database database;
 
     private ArrayList<String> historyOfCities = new ArrayList<>();
@@ -24,13 +24,15 @@ public class CitiesGame {
     enum State {active, notActive, hintProcessing} // состояния игры
 
     private State state;
-    private String city;
+    //private String city;
+    private City city;
     boolean isAnswerCity = false;
+    private Map<Character, List<City>> citiesHashMap = new HashMap<>();
 
     public CitiesGame(Database database) {
         state = State.active;
         this.database = database;
-        citiesHashMap = database.createMap();
+        citiesHashMap = database.getCitiesHashMap();
     }
 
     public CitiesGame() {
@@ -101,10 +103,10 @@ public class CitiesGame {
     }
 
     public char endLetter() { // ф-я выводит, город на какую букву должен назвать пользователь
-        if (city.charAt(city.length() - 1) == 'ы' || city.charAt(city.length() - 1) == 'ь') {
-            return city.charAt(city.length() - 2);
+        if (city.getName().charAt(city.getName().length() - 1) == 'ы' || city.getName().charAt(city.getName().length() - 1) == 'ь') {
+            return city.getName().charAt(city.getName().length() - 2);
         }
-        return city.charAt(city.length() - 1);
+        return city.getName().charAt(city.getName().length() - 1);
     }
 
 
@@ -116,23 +118,22 @@ public class CitiesGame {
         int min = 0;
         int max = 25;
         Character[] alph = {'А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н',
-                'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Э', 'Ю', 'Я'};
+                'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ы', 'Ь', 'Э', 'Ю', 'Я'};
         int randLetterIndex = (int) (Math.random() * ++max) + min;
         Character randLetter = alph[randLetterIndex];
         int cityIndex = citiesHashMap.get(randLetter).size();
         int randIndex = (int) (Math.random() * cityIndex);
-        ArrayList cities = citiesHashMap.get(randLetter);
-        city = (String) cities.get(randIndex);
+        List<City> cities = citiesHashMap.get(randLetter);
+        city = cities.get(randIndex);
 
-        historyOfCities.add(city);
+        historyOfCities.add(city.getName());
 
-        isAnswerCity = true;
-
-        return city;
+        return city.getName() + "\n" + city.getInfo();
     }
 
 
     private String getAnswerOnUsersCity(String message) {// ф-ю, которая генерирует город на заданную букву
+        String userCity = message;
         char firstLetter = message.charAt(0);
         firstLetter = String.valueOf(firstLetter).toLowerCase().charAt(0);
         int c = 0;
@@ -140,14 +141,14 @@ public class CitiesGame {
             isAnswerCity = false;
             return "Город должен начинаться с последней буквы моего города, придумай другой.";
         } else
-            for (int i = 0; i < database.returnCitiesArray().size(); i++) {
-                if (Objects.equals(database.returnCitiesArray().get(i), message))
+
+            for (int i = 0; i < database.getcitiesArray().size(); i++) {// ПЕРЕПИСАНО
+                if (Objects.equals(database.getcitiesArray().get(i), userCity))// ПЕРЕПИСАНО
                     break;
                 else
                     c++;
             }
-        if (c == database.returnCitiesArray().size()) {
-            isAnswerCity = false;
+        if (c == database.getcitiesArray().size()) {// ПЕРЕПИСАНО
             return "Такого города не существует";
         }
 
@@ -168,17 +169,17 @@ public class CitiesGame {
             lastLetter = message.charAt(message.length() - 1);
 
         lastLetter = String.valueOf(lastLetter).toUpperCase().charAt(0);
-
         int numOfSameLetterCities = citiesHashMap.get(lastLetter).size();
         int randIndex = (int) (Math.random() * numOfSameLetterCities);
-        ArrayList cities = citiesHashMap.get(lastLetter);
-        city = (String) cities.get(randIndex);
+        List<City> cities = citiesHashMap.get(lastLetter);
+        city = cities.get(randIndex);
 
-        historyOfCities.add(city);
+        historyOfCities.add(city.getName());
 
         isAnswerCity = true;
 
-        return city + "\n" + getCityInformation();
+        //return city + "\n" + getCityInformation();
+        return city.getName() + "\n" + city.getInfo();
 
     }
 
@@ -200,84 +201,14 @@ public class CitiesGame {
     }
 
 
-    //методы для картинки и информации о городе
-
-    public String getHTMLContent() {
-        String htmlPageContent = "";
-
-        String wikiLink = "https://ru.wikipedia.org/wiki/";
-
-        try {
-            URL oracle = new URL(wikiLink + city);
-
-            BufferedReader in = new BufferedReader(
-                    new InputStreamReader(oracle.openStream()));
-
-            String inputLine;
-            while ((inputLine = in.readLine()) != null)
-                htmlPageContent += inputLine;
-            in.close();
-        } catch (IOException e) {
-            System.out.println("Ссылка не найдена" + e.getMessage());
-        }
-
-        return htmlPageContent;
-    }
-
-
-    public String getCityInformation() {
-
-        String htmlPageContent = getHTMLContent();
-
-
-        Pattern p = Pattern.compile("<p><b>(.*?)</p>");  //первый абзац википедиии html
-        Matcher m = p.matcher(htmlPageContent);
-        String text = "";
-        String cityInformation = "";
-        if (m.find())
-            text += m.group().subSequence(1, m.group().length() - 1);
-
-
-        Pattern rus = Pattern.compile((">(.*?)<")); //выделение текста из html фрагмента
-        Matcher match = rus.matcher(text);
-        while (match.find())
-            cityInformation += match.group().subSequence(1, match.group().length() - 1);
-
-
-        Pattern del = Pattern.compile(("\\d*&(.*?);"));  //удаление лишних остатков
-        Matcher matcher = del.matcher(cityInformation);
-        while (matcher.find())
-            cityInformation = cityInformation.replace(matcher.group(), "");
-
-
-        return cityInformation;
-    }
-
-
-    public String getImageCityLink() {
-
-        String htmlPageContent = getHTMLContent();
-
-        Pattern link = Pattern.compile("<meta property=\"og:image\" content=\"(.*?)\"/>");
-        Matcher match = link.matcher(htmlPageContent);
-
-        String imageLink = "";
-
-        if (match.find())
-            imageLink = (String) match.group().subSequence(35, match.group().length() - 3);
-
-
-        return imageLink;
-    }
-
     public void saveImage() {
 
-        String link = getImageCityLink();
+        String link = city.getImage();
         try {
             URL url = new URL(link);
             BufferedImage image = ImageIO.read(url);
             String typ = "jpg";
-            File f1 = new File("Images\\" + city + ".jpg");
+            File f1 = new File("Images\\" + city.getName().toString() + ".jpg");
             ImageIO.write(image, typ, f1);
         } catch (IOException e) {
             System.out.println("Ссылка не найдена" + e.getMessage()); //TODO: поправить
@@ -287,11 +218,21 @@ public class CitiesGame {
     public InputFile getImageFile() {
 
         saveImage();
-        File f = new File("Images\\" + city + ".jpg");
-        InputFile file = new InputFile(f, "Images\\" + city + ".jpg");
+        File f = new File("Images\\" + city.getName().toString() + ".jpg");
+        InputFile file = new InputFile(f, "Images\\" + city.getName().toString() + ".jpg");
 
         return file;
 
     }
+    public static List<KeyboardRow> KeyboardRowsForCity(){
+        List<KeyboardRow> KeyboardRows = new ArrayList<>();
+        KeyboardRow row = new KeyboardRow();
+        row.add("help");
+        row.add("hint");
+        row.add("finish");
+        KeyboardRows.add(row);
+        return KeyboardRows;
+    }
+
 
 }

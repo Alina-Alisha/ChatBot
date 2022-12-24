@@ -3,10 +3,12 @@ package io.proj3ct.GameTGBot.game;
 
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -20,12 +22,19 @@ public class BotLogic {
     private Database database; //база данных создается сразу и не передается в конструктор
     private Map<Long, User> dialogStateById = new HashMap<>();
 
-
+/*
     public BotLogic(String fileNameWords, String fileNameCities) {
         this.fileNameWords = fileNameWords;
         this.fileNameCities = fileNameCities;
         database = new Database(fileNameWords, fileNameCities);
     }
+
+ */
+    public BotLogic(Database database) {
+        this.database = database;
+
+    }
+
 
     public String getAnswer(String userMessage, long id){
         User user = getUser(id);
@@ -36,19 +45,6 @@ public class BotLogic {
         return answer;
 
     }
-
-
-
-    public InputFile getImageFile(long id){
-        User user = getUser(id);
-        return user.getImage();
-    }
-
-    public boolean getImageState(long id){
-        User user = getUser(id);
-        return user.getImageState();
-    }
-
 
     public boolean thereAreActiveUsers() { //ф-я проверяет, есть ли активные диалоги в массиве ArrayUsers
         for (Map.Entry<Long, User> pair : dialogStateById.entrySet()) {
@@ -83,5 +79,19 @@ public class BotLogic {
                 Если захочешть посмотреть, какие команды я понимаю, напиши "help".
                 Для подсказки введи "hint".
                 Для начала игры введи "start cities game"!""";
+    }
+    public List<KeyboardRow> getKeyboardRows(long id) {
+        User user = getUser(id);
+        return user.KeyboardRowsForMessage();
+    }
+
+    public boolean getImageState(long id) {
+        //User user = getUser(id);
+        //return user.getImageState();
+        return getUser(id).getImageState();
+    }
+    public InputFile getImageFile(long id){
+        User user = getUser(id);
+        return user.getImage();
     }
 }

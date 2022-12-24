@@ -2,14 +2,25 @@ package io.proj3ct.GameTGBot.service;
 
 import io.proj3ct.GameTGBot.config.BotConfig;
 import io.proj3ct.GameTGBot.game.BotLogic;
+import io.proj3ct.GameTGBot.game.Database;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.ParseMode;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
+import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+
+import java.io.IOException;
+import java.security.GeneralSecurityException;
+import java.util.ArrayList;
+import java.util.List;
+
+import static io.proj3ct.GameTGBot.service.GoogleSheets.getSheetContent;
 
 
 @Component
@@ -19,10 +30,11 @@ public class TelegramBot extends TelegramLongPollingBot {
 
     String databaseFileNameWords = "Words.txt";
     String databaseFileNameCities = "Cities.txt";
-    BotLogic botLogic = new BotLogic(databaseFileNameWords, databaseFileNameCities);
+    //BotLogic botLogic = new BotLogic(databaseFileNameWords, databaseFileNameCities);
+    Database database = new Database(getSheetContent());
+    BotLogic botLogic = new BotLogic(database);
 
-
-    public TelegramBot(BotConfig config){
+    public TelegramBot(BotConfig config) throws GeneralSecurityException, IOException {
         this.config = config;
     }
 
@@ -69,6 +81,8 @@ public class TelegramBot extends TelegramLongPollingBot {
         message.setChatId(String.valueOf(chatId));
         message.setText(textToSend);
 
+        createKeyboardForMessage(botLogic.getKeyboardRows(chatId), message);
+
         try{
             execute(message);
         }
@@ -91,6 +105,11 @@ public class TelegramBot extends TelegramLongPollingBot {
         }
 
 
+    }
+    private void createKeyboardForMessage(List<KeyboardRow> KeyboardRows, SendMessage message){
+        ReplyKeyboardMarkup keyboardMarkup = new ReplyKeyboardMarkup();
+        keyboardMarkup.setKeyboard(KeyboardRows);
+        message.setReplyMarkup(keyboardMarkup);
     }
 
 

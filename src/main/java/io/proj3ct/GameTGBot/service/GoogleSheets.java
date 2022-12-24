@@ -16,13 +16,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.security.GeneralSecurityException;
-import java.util.Arrays;
 import java.util.List;
 
 public class GoogleSheets {
     private static Sheets sheetsService;
     private static String APPLICATION_NAME = "GoogleSheets";
     private static String SPREADSHEET_ID = "1wZEb5k2mQ9pw_rYfWaOpjGPRcsvMrpYGGtKDVPwZb14";
+    private static String range = "Cities!A1:C433";
 
     private static Credential authorize() throws IOException, GeneralSecurityException {
         InputStream in = GoogleSheets.class.getResourceAsStream("/credentials.json");
@@ -61,7 +61,7 @@ public class GoogleSheets {
 
     public static void main(String[] args) throws IOException, GeneralSecurityException {
         sheetsService = getSheetsService();
-        String range = "Cities!A1:B10";
+        String range = "Cities!A1:C433";
 
         ValueRange response = sheetsService.spreadsheets().values()
                 .get(SPREADSHEET_ID, range)
@@ -72,8 +72,18 @@ public class GoogleSheets {
             System.out.println(("No data found"));
         } else {
             for (List<Object> row : values) {
-                System.out.printf("%s %s\n", row.get(0), row.get(1));
+                System.out.printf("%s \n", row.get(0));
             }
         }
+    }
+    public static List<List<Object>> getSheetContent() throws IOException, GeneralSecurityException {
+        sheetsService = getSheetsService();
+
+        ValueRange response = sheetsService.spreadsheets().values()
+                .get(SPREADSHEET_ID, range)
+                .execute();
+        List<List<Object>> values = response.getValues();
+
+        return values;
     }
 }

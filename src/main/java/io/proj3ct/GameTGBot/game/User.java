@@ -2,6 +2,10 @@ package io.proj3ct.GameTGBot.game;
 
 
 import org.telegram.telegrambots.meta.api.objects.InputFile;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class User {
 
@@ -56,10 +60,12 @@ public class User {
         }
 
     }
-
+/*
     public InputFile getImage(){
         return citiesGame.getImageFile();
     }
+
+ */
     public boolean getImageState(){return citiesGame.isAnswerCity;}
 
     private String help(){
@@ -124,5 +130,21 @@ public class User {
 
     public GallowsGame.State getGallowsGameIsActive() {
         return GallowsGame.returnActiveState();
+    }
+    public List<KeyboardRow> KeyboardRowsForMessage(){
+        if (getCitiesGameState() == CitiesGame.returnActiveState())
+            return CitiesGame.KeyboardRowsForCity();
+        if (getCitiesGameState() == CitiesGame.returnHintState())
+            return GallowsGame.KeyboardRowsForGallowsGame();
+
+        List<KeyboardRow> KeyboardRows = new ArrayList<>();
+        KeyboardRow row = new KeyboardRow();
+        row.add("help");
+        row.add("start cities game");
+        KeyboardRows.add(row);
+        return KeyboardRows;
+    }
+    public InputFile getImage(){
+        return citiesGame.getImageFile();
     }
 }

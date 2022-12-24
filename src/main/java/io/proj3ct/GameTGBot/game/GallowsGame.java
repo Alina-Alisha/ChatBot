@@ -1,7 +1,11 @@
 package io.proj3ct.GameTGBot.game;
 
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
+
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class GallowsGame {
     public HiddenWord hiddenWord;
@@ -48,7 +52,7 @@ public class GallowsGame {
     }
 
     public String start(Database database){
-        hiddenWord = new HiddenWord(generateWord(database.returnWordsArray()));
+        hiddenWord = new HiddenWord(generateWord(database.getCitiesHashMap(), database.getCitiesNumber()));
         String text = "Отлично! Попробуй отгадать моё слово!\n";
         state = State.active;
         return text + hiddenWord.wordWithHiddenLetters();
@@ -63,15 +67,14 @@ public class GallowsGame {
         HashMap hashMap = database.getHashMap();
         ArrayList cities = (ArrayList) hashMap.get(letter);
         int randIndex = (int) (Math.random()* cities.size()+1);
-        hiddenWord = new HiddenWord((String) cities.get(randIndex));
+        hiddenWord = new HiddenWord((String) cities.get(randIndex).toString());
         hiddenWord.hiddenLetters.set(0, true) ;
         return hiddenWord.wordWithHiddenLetters();
     }
 
 
     public String newWord(Database database){ // ф-я возвращает новое загаданное слово
-        //dialog.startProcessing(); //TODO: добавить состояние обработка буквы
-        hiddenWord = new HiddenWord(generateWord(database.returnWordsArray()));
+        hiddenWord = new HiddenWord(generateWord(database.getCitiesHashMap(), database.getCitiesNumber()));
         String text = "Вот, держи новое слово\n";
 
         return text + hiddenWord.wordWithHiddenLetters();
@@ -125,9 +128,13 @@ public class GallowsGame {
         return hiddenWord.wordWithHiddenLetters().contains(Character.toString(userMessage));
     }
 
-    private String generateWord(ArrayList<String> wordsArray) { // ф-я генерирует рандомное слово, которое будет загадывать бот, передаем массив слов
-        int randNumber = (int) ( Math.random() * wordsArray.size() );
-        return wordsArray.get(randNumber);
+    private String generateWord(Map<Character, List<City>> citiesHashMap, int citiesNumber) { // ф-я генерирует рандомное слово, которое будет загадывать бот, передаем массив слов
+        int randNumber = (int) ( Math.random() * citiesNumber );
+        Character[] alph = {'А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н',
+                'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ы', 'Ь', 'Э', 'Ю', 'Я'};
+        Character randLetter = alph[randNumber];
+
+        return citiesHashMap.get(randLetter).get(randNumber).getName();
     }
 
     public State getState() {
@@ -136,6 +143,14 @@ public class GallowsGame {
 
     public static State returnActiveState() {
         return State.active;
+    }
+    public static List<KeyboardRow> KeyboardRowsForGallowsGame(){
+        List<KeyboardRow> KeyboardRows = new ArrayList<>();
+        KeyboardRow row = new KeyboardRow();
+        row.add("help");
+        row.add("finish");
+        KeyboardRows.add(row);
+        return KeyboardRows;
     }
 
 }
