@@ -232,15 +232,7 @@ public class CitiesGame {
         return file;
 
     }
-    public static List<KeyboardRow> KeyboardRowsForCity(){
-        List<KeyboardRow> KeyboardRows = new ArrayList<>();
-        KeyboardRow row = new KeyboardRow();
-        row.add("help");
-        row.add("hint");
-        row.add("finish");
-        KeyboardRows.add(row);
-        return KeyboardRows;
-    }
+
 
 
 }
