@@ -1,7 +1,5 @@
 package io.proj3ct.GameTGBot.game;
 
-
-import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
@@ -11,11 +9,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
-
+import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 
 
 public class BotLogic {
+
 
     private String fileNameWords;
     private String fileNameCities;
@@ -42,6 +41,8 @@ public class BotLogic {
         if (answer == null) {
             return help();
         }
+        user.historyOfDialog += userMessage + "\n"+ answer +"\n";
+
         return answer;
 
     }
